@@ -12,9 +12,6 @@ try:
 except ImportError:
     args = None
 
-# TODO: add -y paramater to confirm
-# print(f"about to create {args.name} with phone {args.phone}")
-
 if __name__ == "__main__":
     name = args.name
     phone = args.phone

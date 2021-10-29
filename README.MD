@@ -1,4 +1,8 @@
-# Google Contacts Sync
+# Google Contacts Creator CLI
+
+This is a contacts creator command line interface used to integrate projects with ERP for freelancers.
+It will create the contact on the Authenticated Google Account if the contact with the same name does not exist.
+It will append a prefix "Fl" for the name to indicate Freelancer and the phone if there is no country code.
 
 ## Install for the first time
 
@@ -6,7 +10,6 @@
 This will be useful for retriving the API Token via Oauth.
 <!-- TODO:  -->
 Maybe also when refresh tokens expires need to call step 2. for sure
-
 2. run `python install.py` to do OAuth and actually save the credentials to the .credentials folder.
 
 ## Run
