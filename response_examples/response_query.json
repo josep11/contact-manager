@@ -1,0 +1,152 @@
+{
+    "results": [
+        {
+            "person": {
+                "resourceName": "people/c7655476536868588071",
+                "etag": "%EiMBAgMFBgcICQoLDA0ODxATFBUWGSEiIyQlJicuNDU3PT4/QBoBAiIMaUtNK0pONEU4Zm89",
+                "metadata": {
+                    "sources": [
+                        {
+                            "type": "CONTACT",
+                            "id": "6a3db7598e63ca27",
+                            "etag": "#iKM+JN4E8fo=",
+                            "updateTime": "2021-01-31T12:03:55.600Z"
+                        }
+                    ],
+                    "objectType": "PERSON"
+                },
+                "names": [
+                    {
+                        "metadata": {
+                            "primary": true,
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "6a3db7598e63ca27"
+                            }
+                        },
+                        "displayName": "Prova Saved Messages Whats",
+                        "familyName": "Whats",
+                        "givenName": "Prova Saved Messages",
+                        "displayNameLastFirst": "Whats, Prova Saved Messages",
+                        "unstructuredName": "Prova Saved Messages Whats"
+                    }
+                ],
+                "photos": [
+                    {
+                        "metadata": {
+                            "primary": true,
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "6a3db7598e63ca27"
+                            }
+                        },
+                        "url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/V8BNOaftJmYfr6rSOVTroLsCrYWH4Z__ACLcDEAEiGQoBUBD___________8BGOS0lfr______wE/s100/photo.jpg",
+                        "default": true
+                    }
+                ],
+                "phoneNumbers": [
+                    {
+                        "metadata": {
+                            "primary": true,
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "6a3db7598e63ca27"
+                            },
+                            "sourcePrimary": true
+                        },
+                        "value": "+34 662 12 66 83",
+                        "canonicalForm": "+34662126683",
+                        "type": "mobile",
+                        "formattedType": "Mòbil"
+                    }
+                ],
+                "memberships": [
+                    {
+                        "metadata": {
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "6a3db7598e63ca27"
+                            }
+                        },
+                        "contactGroupMembership": {
+                            "contactGroupId": "myContacts",
+                            "contactGroupResourceName": "contactGroups/myContacts"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "person": {
+                "resourceName": "people/c2548513001755027743",
+                "etag": "%EiMBAgMFBgcICQoLDA0ODxATFBUWGSEiIyQlJicuNDU3PT4/QBoBAiIMcXVQOExaYUFhcjQ9",
+                "metadata": {
+                    "sources": [
+                        {
+                            "type": "CONTACT",
+                            "id": "235e23128f12a91f",
+                            "etag": "#quP8LZaAar4=",
+                            "updateTime": "2021-10-29T14:14:45.507700Z"
+                        }
+                    ],
+                    "objectType": "PERSON"
+                },
+                "names": [
+                    {
+                        "metadata": {
+                            "primary": true,
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "235e23128f12a91f"
+                            }
+                        },
+                        "displayName": "aaaaa prova",
+                        "givenName": "aaaaa prova",
+                        "displayNameLastFirst": "aaaaa prova",
+                        "unstructuredName": "aaaaa prova"
+                    }
+                ],
+                "photos": [
+                    {
+                        "metadata": {
+                            "primary": true,
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "235e23128f12a91f"
+                            }
+                        },
+                        "url": "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/V8BNOaftJmYB1xAqMyFGvTc6P4KL0DQ5gCLcDEAEiGQoBYRD___________8BGIDYvf_______wE/s100/photo.jpg",
+                        "default": true
+                    }
+                ],
+                "biographies": [
+                    {
+                        "metadata": {
+                            "primary": true,
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "235e23128f12a91f"
+                            }
+                        },
+                        "value": "aquestes son les meves notes",
+                        "contentType": "TEXT_PLAIN"
+                    }
+                ],
+                "memberships": [
+                    {
+                        "metadata": {
+                            "source": {
+                                "type": "CONTACT",
+                                "id": "235e23128f12a91f"
+                            }
+                        },
+                        "contactGroupMembership": {
+                            "contactGroupId": "myContacts",
+                            "contactGroupResourceName": "contactGroups/myContacts"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

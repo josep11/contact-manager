@@ -48,6 +48,11 @@ def create_contact(service, name, phone):
                 'value': phone
             }
         ],
+        "biographies": [
+            {
+                "value": "Created automatically by Contacts Creator",
+            }
+        ]
         # "emailAddresses": [
         #     {
         #         'value': 'samkit5495@gmail.com'
