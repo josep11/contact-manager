@@ -1,9 +1,16 @@
 import re
+import sys
+
+
 PREFIX = "Fl "
 PHONE_COUNTRY_CODE = "+34"
 
 regex_phone_with_country_code = r"^\+(?:[0-9]●?){6,14}[0-9]$"
 regex_phone = r"^(?:[0-9]●?){9}$"
+
+
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
 def transform_name(name):

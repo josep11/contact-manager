@@ -1,0 +1,2 @@
+class ContactAlreadyExistException(BaseException):
+    pass

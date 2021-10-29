@@ -3,11 +3,19 @@ from __future__ import print_function
 import httplib2
 
 from apiclient import discovery
+from app.exceptions import ContactAlreadyExistException
 from app.install import get_credentials
-from app.utils import transform_name, transform_phone
+from app.utils import eprint, transform_name, transform_phone
 
 
 def get_contact_by_query(service, query):
+    # first we should warm un the cache
+    # GET /v1/people:searchContacts?query=&readMask=names,emailAddresses HTTP/1.1
+    service.people().searchContacts(
+        query="", readMask="names,emailAddresses").execute()
+
+    # There is a bug in the service and it takes some 30 seconds to be able to find a newly added contact
+
     # The query will match everything that starts with that query but not middle parts
     results = service.people().searchContacts(
         pageSize=10, query=query, readMask="names").execute()
@@ -29,10 +37,7 @@ def create_service():
 
 
 def create_contact(service, name, phone):
-    name = transform_name(name)
-    phone = transform_phone(phone)
-
-    print(f"about to create {name} with phone {phone}")
+    print(f"About to create {name} with phone {phone}")
 
     service.people().createContact(body={
         "names": [
@@ -58,15 +63,18 @@ def create_contact(service, name, phone):
     }).execute()
 
 
-def main(name, phone):
-    try:
-        service = create_service()
-        contact = get_contact_by_query(service, transform_name(name))
-        if contact is not None:
-            print(f'contact ${phone} already exists')
-            exit(1)
+def create_contact_google_contacts(name, phone):
+    name = transform_name(name)
+    phone = transform_phone(phone)
 
-        create_contact(service, name, phone)
-        print(f"Created contact {name} with phone {phone}")
-    except Exception as e:
-        raise e
+    service = create_service()
+    contact = get_contact_by_query(service, name)
+    if contact is not None:
+        raise ContactAlreadyExistException(
+            f'Error: contact with name "{name}" already exists')
+
+    create_contact(service, name, phone)
+    print(f"Created contact {name} with phone {phone}")
+    # except BaseException as err:
+    #     msg = err.args
+    #     eprint(msg)
