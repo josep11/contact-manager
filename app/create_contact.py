@@ -4,10 +4,7 @@ import httplib2
 
 from apiclient import discovery
 from app.install import get_credentials
-# from oauth2client import client
-# from oauth2client import tools
 from app.utils import transform_name, transform_phone
-# from oauth2client.file import Storage
 
 
 def get_contact_by_query(service, query):
@@ -55,7 +52,7 @@ def create_contact(service, name, phone):
         ]
         # "emailAddresses": [
         #     {
-        #         'value': 'samkit5495@gmail.com'
+        #         'value': 'myemail@gmail.com'
         #     }
         # ]
     }).execute()

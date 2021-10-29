@@ -16,8 +16,6 @@ def transform_phone(phone):
 
     if re.fullmatch(regex_phone_with_country_code, phone):
         # print(f"'{phone}' is an fully qualified intl. number")
-        # if PHONE_COUNTRY_CODE in phone:
-        #     print('spanish number')
         return phone
     else:
         if not re.fullmatch(regex_phone, phone):
