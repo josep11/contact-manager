@@ -25,9 +25,9 @@ if not PROJECTS_ROOTDIR:
 try:
     parser = argparse.ArgumentParser()
     parser.add_argument("name", type=str,
-                        help="the name of the contact to create")
+                        help="the name of the contact to create (wrapped it between brackets)")
     parser.add_argument("phone", type=str,
-                        help="the phone of the contact to create")
+                        help="the phone of the contact to create (wrapped it between brackets)")
     args = parser.parse_args()
     print(args)
 except ImportError:

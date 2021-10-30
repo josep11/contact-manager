@@ -21,12 +21,17 @@ Copy the following into ~/.bash_profile, ~/.profile or equivalent to install it 
 function create_contact(){
     CONTACTS_CREATOR_ROOTDIR=/path/to/where/the/project/is/installed
     cd "$CONTACTS_CREATOR_ROOTDIR";
-    ./create_contact.py $@
+    ./create_contact.py "$@"
     cd - 1>/dev/null
 }
 ```
 
 ## Run
+
+```bash
+create_contact "full name" "phone number"
+create_contact -h # get help
+```
 
 ```bash
 ./create_contact.py "AAAAAA TestContactName" "888888888"
