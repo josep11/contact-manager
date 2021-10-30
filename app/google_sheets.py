@@ -39,6 +39,8 @@ def add_customer(credentials, rows, name):
         print(f'Not adding {name} to spreadsheet. Already exists')
         return
 
+    non_empty_rows_before = len([x for x in rows if x])
+
     rows.append([name])
 
     service = create_service(credentials)
@@ -50,7 +52,7 @@ def add_customer(credentials, rows, name):
         spreadsheetId=SAMPLE_SPREADSHEET_ID_input, range=SAMPLE_RANGE_NAME,
         valueInputOption=value_input_option, body=body).execute()
 
-    updated = result.get('updatedCells')
-    print('{0} cells updated.'.format(updated))
-    if updated != len(rows):
+    updated_rows = result.get('updatedCells')
+    print('{0} cells updated.'.format(updated_rows))
+    if updated_rows != (non_empty_rows_before + 1):
         raise BaseException('No s\'ha actualitzat cap contacte!')

@@ -48,16 +48,19 @@ if __name__ == "__main__":
     create_contact_folder()
 
     credentials = get_credentials()
+
+    # Google Contacts
     try:
         create_contact_google_contacts(credentials, name, phone)
     except ContactAlreadyExistException as err:
         msg = err.args
         eprint(fg.red + msg[0] + fg.rs)
-        exit(1)
+        print('skipping Google Contacts creation')
     except BaseException as err:
         eprint(err)
         exit(1)
 
-    # Add it to Google Sheet Customer Database list
+
+    # Google Sheet Customer Database list: add the customer
     rows = google_sheets.get_rows(credentials)
     google_sheets.add_customer(credentials, rows, name)
