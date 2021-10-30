@@ -20,7 +20,6 @@ except ImportError:
 SCOPES = [
     'https://www.googleapis.com/auth/contacts',
     'https://www.googleapis.com/auth/spreadsheets',
-    'https://www.googleapis.com/auth/drive'
 ]
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Contacts Sync Python'

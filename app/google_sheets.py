@@ -3,6 +3,9 @@ from sty import fg
 import os
 from app.utils import eprint
 
+from dotenv import load_dotenv
+load_dotenv()
+
 SAMPLE_SPREADSHEET_ID_input = os.getenv('SAMPLE_SPREADSHEET_ID_input')
 if not SAMPLE_SPREADSHEET_ID_input:
     eprint(fg.red + "Error: environments SAMPLE_SPREADSHEET_ID_input not set!" + fg.rs)

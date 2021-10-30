@@ -14,7 +14,8 @@ This will be useful for retriving the API Token via Oauth.
 ## Run
 
 ```bash
-python main.py "AB Default Contact Name" "888888888"
+./main.py "AAAAAA TestContactName" "888888888"
+# python main.py "AAAAAA TestContactName" "888888888"
 ```
 
 ## Development

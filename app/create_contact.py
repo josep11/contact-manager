@@ -1,8 +1,7 @@
 
 from __future__ import print_function
-import httplib2
 
-from apiclient import discovery
+from googleapiclient.discovery import build
 from app.exceptions import ContactAlreadyExistException
 from app.utils import eprint, transform_name, transform_phone
 
@@ -28,10 +27,7 @@ def get_contact_by_query(service, query):
 
 
 def create_service(credentials):
-    http = credentials.authorize(httplib2.Http())
-    # maybe substitute for "from googleapiclient.discovery import build"
-    service = discovery.build('people', 'v1', http=http,
-                              discoveryServiceUrl='https://people.googleapis.com/$discovery/rest')
+    service = build('people', 'v1', credentials=credentials)
     return service
 
 
