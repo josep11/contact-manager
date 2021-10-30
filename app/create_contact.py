@@ -4,7 +4,6 @@ import httplib2
 
 from apiclient import discovery
 from app.exceptions import ContactAlreadyExistException
-from app.install import get_credentials
 from app.utils import eprint, transform_name, transform_phone
 
 
@@ -28,9 +27,9 @@ def get_contact_by_query(service, query):
     return resultsArr
 
 
-def create_service():
-    credentials = get_credentials()
+def create_service(credentials):
     http = credentials.authorize(httplib2.Http())
+    # maybe substitute for "from googleapiclient.discovery import build"
     service = discovery.build('people', 'v1', http=http,
                               discoveryServiceUrl='https://people.googleapis.com/$discovery/rest')
     return service
@@ -63,11 +62,11 @@ def create_contact(service, name, phone):
     }).execute()
 
 
-def create_contact_google_contacts(name, phone):
+def create_contact_google_contacts(credentials, name, phone):
     name = transform_name(name)
     phone = transform_phone(phone)
 
-    service = create_service()
+    service = create_service(credentials)
     contact = get_contact_by_query(service, name)
     if contact is not None:
         raise ContactAlreadyExistException(

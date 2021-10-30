@@ -10,16 +10,22 @@ try:
     import argparse
     parser = argparse.ArgumentParser(parents=[tools.argparser])
     # flags = parser.parse_args()
-    flags = vars(parser.parse_args([])) # only the default arguments or it will fail if we call the script with our parameters
+    # only the default arguments or it will fail if we call the script with our parameters
+    flags = vars(parser.parse_args([]))
 except ImportError:
     flags = None
 
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/people.googleapis.com-python-quickstart.json
-SCOPES = 'https://www.googleapis.com/auth/contacts'
+SCOPES = [
+    'https://www.googleapis.com/auth/contacts',
+    'https://www.googleapis.com/auth/spreadsheets',
+    'https://www.googleapis.com/auth/drive'
+]
 CLIENT_SECRET_FILE = 'client_secret.json'
-APPLICATION_NAME = 'People API Python'
-CREDENTIAL_NAME='people.googleapis.com-josepalsina-contactscreator.json'
+APPLICATION_NAME = 'Contacts Sync Python'
+CREDENTIAL_NAME = 'token-josepalsina-contactscreator.json'
+
 
 def get_credentials():
     """Gets valid user credentials from storage.
@@ -43,7 +49,7 @@ def get_credentials():
         flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
         flow.user_agent = APPLICATION_NAME
         if flags:
-            credentials = tools.run_flow(flow, store, flags)
+            credentials = tools.run_flow(flow, store)  # , flags)
         else:  # Needed only for compatibility with Python 2.6
             credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)

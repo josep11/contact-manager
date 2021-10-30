@@ -1,3 +1,5 @@
+from google.auth import credentials
+from app import google_sheets
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
 from app.create_contact import create_contact_google_contacts
@@ -6,6 +8,8 @@ import os
 from sty import fg  # , bg, ef, rs
 
 from dotenv import load_dotenv
+
+from install import get_credentials
 load_dotenv()
 
 PROJECTS_ROOTDIR = os.getenv("PROJECTS_ROOTDIR")
@@ -37,7 +41,7 @@ if __name__ == "__main__":
     create_contact_folder()
 
     try:
-        create_contact_google_contacts(name, phone)
+        create_contact_google_contacts(credentials, name, phone)
     except ContactAlreadyExistException as err:
         msg = err.args
         eprint(fg.red + msg[0] + fg.rs)
@@ -45,4 +49,9 @@ if __name__ == "__main__":
     except BaseException as err:
         eprint(err)
         exit(1)
+
+    # Add it to Google Sheet Customer Database list
+    credentials = get_credentials()
+    rows = google_sheets.get_rows(credentials)
+    google_sheets.add_customer(credentials, rows, name)
 
