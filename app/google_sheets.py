@@ -53,4 +53,4 @@ def add_customer(credentials, rows, name):
     updated = result.get('updatedCells')
     print('{0} cells updated.'.format(updated))
     if updated != len(rows):
-        raise 'No s\'ha actualitzat cap contacte!'
+        raise BaseException('No s\'ha actualitzat cap contacte!')

@@ -10,12 +10,27 @@ It will append a prefix "Fl" for the name to indicate Freelancer and the phone i
 This will be useful for retriving the API Token via Oauth.
 2. run `python install.py` to do OAuth and actually save the credentials to the .credentials folder.
 3. `cp .env.example .env` and set environment variables apropiately
+4. [Optional] See [install globally](#install-globally) section
+
+### Install Globally
+
+Copy the following into ~/.bash_profile, ~/.profile or equivalent to install it as a system wide command:
+
+```bash
+###### Contacts Creator #######
+function create_contact(){
+    CONTACTS_CREATOR_ROOTDIR=/path/to/where/the/project/is/installed
+    cd "$CONTACTS_CREATOR_ROOTDIR";
+    ./create_contact.py $@
+    cd - 1>/dev/null
+}
+```
 
 ## Run
 
 ```bash
-./main.py "AAAAAA TestContactName" "888888888"
-# python main.py "AAAAAA TestContactName" "888888888"
+./create_contact.py "AAAAAA TestContactName" "888888888"
+# python create_contact.py "AAAAAA TestContactName" "888888888"
 ```
 
 ## Development

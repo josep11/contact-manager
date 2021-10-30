@@ -18,6 +18,10 @@ if not PROJECTS_ROOTDIR:
     eprint(fg.red + "Error: environments not set!" + fg.rs)
     exit(1)
 
+# import sys
+# print(sys.version)
+# exit(0)
+
 try:
     parser = argparse.ArgumentParser()
     parser.add_argument("name", type=str,
@@ -25,6 +29,7 @@ try:
     parser.add_argument("phone", type=str,
                         help="the phone of the contact to create")
     args = parser.parse_args()
+    print(args)
 except ImportError:
     args = None
 

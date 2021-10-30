@@ -1,6 +1,8 @@
 import re
 import sys
 
+from app.exceptions import WrongPhoneNumberException
+
 
 PREFIX = "Fl "
 PHONE_COUNTRY_CODE = "+34"
@@ -26,5 +28,5 @@ def transform_phone(phone):
         return phone
     else:
         if not re.fullmatch(regex_phone, phone):
-            raise f"Wrong input: The phone {phone} has less than 9 digits or is not a number!"
+            raise WrongPhoneNumberException(f"Wrong input: The phone {phone} has less than 9 digits or is not a number!")
         return f"{PHONE_COUNTRY_CODE}{phone}"
