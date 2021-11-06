@@ -37,13 +37,16 @@ function delete_contact(){
 
 ```bash
 create_contact "full name" "phone number"
-create_contact -h # get help
+delete_contact "full name"
+
+create_contact -h
+
 ```
 
-```bash
+<!-- ```bash
 ./create_contact.py "AAAAAA TestContactName" "888888888"
 # python create_contact.py "AAAAAA TestContactName" "888888888"
-```
+``` -->
 
 ## Development
 
@@ -53,7 +56,3 @@ create_contact -h # get help
 # will find all tests named test*.py inside tests director
 python -m unittest discover
 ```
-
-## TODOs
-
-- create a delete command to delete a contact by the name.

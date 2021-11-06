@@ -18,10 +18,6 @@ if not PROJECTS_ROOTDIR:
     eprint(fg.red + "Error: environments not set!" + fg.rs)
     exit(1)
 
-# import sys
-# print(sys.version)
-# exit(0)
-
 try:
     parser = argparse.ArgumentParser()
     parser.add_argument("name", type=str,
@@ -29,7 +25,6 @@ try:
     parser.add_argument("phone", type=str,
                         help="the phone of the contact to create (wrapped it between brackets)")
     args = parser.parse_args()
-    print(args)
 except ImportError:
     args = None
 
@@ -39,7 +34,7 @@ def open_directory(targetDirectory):
     call(["open", targetDirectory])
 
 
-def create_contact_folder():
+def create_contact_folder(name):
     contact_dir = os.path.join(PROJECTS_ROOTDIR, name)
     if not os.path.exists(contact_dir):
         os.makedirs(contact_dir)
@@ -51,7 +46,7 @@ if __name__ == "__main__":
     name = args.name
     phone = args.phone
 
-    contact_dir = create_contact_folder()
+    contact_dir = create_contact_folder(name)
 
     credentials = get_credentials()
 

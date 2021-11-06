@@ -2,7 +2,7 @@
 from __future__ import print_function
 
 from googleapiclient.discovery import build
-from app.exceptions import ContactAlreadyExistException
+from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
 from app.utils import eprint, transform_name, transform_phone
 
 
@@ -73,3 +73,20 @@ def create_contact_google_contacts(credentials, name, phone):
     # except BaseException as err:
     #     msg = err.args
     #     eprint(msg)
+
+
+def delete_contact_google_contacts(credentials, name):
+    name = transform_name(name)
+
+    service = create_service(credentials)
+    contact = get_contact_by_query(service, name)
+    if contact is None:
+        raise ContactDoesNotExistException(
+            f'Error: contact with name "{name}" does not exists')
+    
+    resourceName=contact[0]['person']['resourceName']
+
+    print(f'deleting {resourceName} from Google Contacts')
+    
+    service.people().deleteContact(resourceName=resourceName).execute()
+
