@@ -33,10 +33,10 @@ def delete_contact_folder(name):
     try:
         send2trash(contact_dir)
     except OSError as e:
-        print("Error: %s : %s" % (contact_dir, e.strerror))
+        print("Error sending to trash: %s : %s" % (contact_dir, e.strerror))
+        return
 
-    print(f'Deleted directory for contact: {name} \n{contact_dir}')
-    return contact_dir
+    print(f'Deleted directory for contact: {name}')
 
 
 if __name__ == "__main__":
