@@ -34,18 +34,24 @@ except ImportError:
     args = None
 
 
+def open_directory(targetDirectory):
+    from subprocess import call
+    call(["open", targetDirectory])
+
+
 def create_contact_folder():
     contact_dir = os.path.join(PROJECTS_ROOTDIR, name)
     if not os.path.exists(contact_dir):
         os.makedirs(contact_dir)
         print(f'Created directory: {contact_dir}')
+    return contact_dir
 
 
 if __name__ == "__main__":
     name = args.name
     phone = args.phone
 
-    create_contact_folder()
+    contact_dir = create_contact_folder()
 
     credentials = get_credentials()
 
@@ -60,7 +66,9 @@ if __name__ == "__main__":
         eprint(err)
         exit(1)
 
-
     # Google Sheet Customer Database list: add the customer
     rows = google_sheets.get_rows(credentials)
     google_sheets.add_customer(credentials, rows, name)
+
+    # opening the directory in finder
+    open_directory(contact_dir)

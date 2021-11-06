@@ -46,3 +46,7 @@ create_contact -h # get help
 # will find all tests named test*.py inside tests director
 python -m unittest discover
 ```
+
+## TODOs
+
+- create a delete command to delete a contact by the name.
