@@ -23,7 +23,7 @@ SCOPES = [
 ]
 CLIENT_SECRET_FILE = 'client_secret.json'
 APPLICATION_NAME = 'Contacts Sync Python'
-CREDENTIAL_NAME = 'token-josepalsina-contactscreator.json'
+CREDENTIAL_NAME = 'token-josepalsina-contactsmanager.json'
 
 
 def get_credentials():

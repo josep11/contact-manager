@@ -5,7 +5,7 @@ from google.auth import credentials
 from app import google_sheets
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
-from app.create_contact import create_contact_google_contacts
+from app.google_contacts import create_contact_google_contacts
 import argparse
 import os
 from sty import fg  # , bg, ef, rs

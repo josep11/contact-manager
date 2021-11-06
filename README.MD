@@ -1,8 +1,8 @@
-# Google Contacts Creator CLI
+# Google Contacts Manager CLI
 
-This is a contacts creator command line interface used to integrate projects with ERP for freelancers.
-It will create the contact on the Authenticated Google Account if the contact with the same name does not exist.
-It will append a prefix "Fl" for the name to indicate Freelancer and the phone if there is no country code.
+This is a command line utility to create/delete contacts used to integrate projects with ERP for freelancers.
+It will create/delete the contact on the Authenticated Google Account if the contact with the same name does not exist.
+When creating it will append a prefix "Fl" for the name to indicate Freelancer and the phone if there is no country code.
 
 ## Install for the first time
 
@@ -17,11 +17,18 @@ This will be useful for retriving the API Token via Oauth.
 Copy the following into ~/.bash_profile, ~/.profile or equivalent to install it as a system wide command:
 
 ```bash
-###### Contacts Creator #######
+###### Contacts Manager #######
+export CONTACTS_MANAGER_ROOTDIR=/path/to/where/the/project/is/installed
+
 function create_contact(){
-    CONTACTS_CREATOR_ROOTDIR=/path/to/where/the/project/is/installed
-    cd "$CONTACTS_CREATOR_ROOTDIR";
+    cd "$CONTACTS_MANAGER_ROOTDIR";
     ./create_contact.py "$@"
+    cd - 1>/dev/null
+}
+
+function delete_contact(){
+    cd "$CONTACTS_MANAGER_ROOTDIR";
+    ./delete_contact.py "$@"
     cd - 1>/dev/null
 }
 ```

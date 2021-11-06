@@ -47,7 +47,7 @@ def create_contact(service, name, phone):
         ],
         # "biographies": [
         #     {
-        #         "value": "Created automatically by Contacts Creator",
+        #         "value": "Created automatically by Contacts Manager",
         #     }
         # ]
         # "emailAddresses": [
