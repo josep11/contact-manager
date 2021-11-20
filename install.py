@@ -29,8 +29,11 @@ CREDENTIAL_NAME = 'token.json'
 def get_credentials():
     """Gets valid user credentials from storage.
 
+
     If nothing has been stored, or if the stored credentials are invalid,
     the OAuth2 flow is completed to obtain the new credentials.
+
+    Documentation on Oauth for Clients: https://docs.gspread.org/en/latest/oauth2.html
 
     Returns:
         Credentials, the obtained credential.

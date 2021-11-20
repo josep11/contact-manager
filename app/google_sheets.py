@@ -7,9 +7,9 @@ from app.utils import eprint
 from dotenv import load_dotenv
 load_dotenv()
 
-SAMPLE_SPREADSHEET_ID_input = os.getenv('SAMPLE_SPREADSHEET_ID_input')
-if not SAMPLE_SPREADSHEET_ID_input:
-    eprint(fg.red + "Error: environments SAMPLE_SPREADSHEET_ID_input not set!" + fg.rs)
+SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
+if not SPREADSHEET_ID:
+    eprint(fg.red + "Error: environments SPREADSHEET_ID not set!" + fg.rs)
     exit(1)
 
 SAMPLE_RANGE_NAME = 'Customers'  # 'A2:A1000'
@@ -28,7 +28,7 @@ def get_rows(credentials):
     """
     service = create_service(credentials)
     result = service.spreadsheets().values().get(
-        spreadsheetId=SAMPLE_SPREADSHEET_ID_input,  range=SAMPLE_RANGE_NAME).execute()
+        spreadsheetId=SPREADSHEET_ID,  range=SAMPLE_RANGE_NAME).execute()
     rows = result.get('values', [])
     print('{0} contacts retrieved from spreadsheet'.format(len(rows)))
     return rows
@@ -50,7 +50,7 @@ def add_customer(credentials, rows, name):
         'values': rows
     }
     result = service.spreadsheets().values().update(
-        spreadsheetId=SAMPLE_SPREADSHEET_ID_input, range=SAMPLE_RANGE_NAME,
+        spreadsheetId=SPREADSHEET_ID, range=SAMPLE_RANGE_NAME,
         valueInputOption=value_input_option, body=body).execute()
 
     updated_rows = result.get('updatedCells')
@@ -59,6 +59,8 @@ def add_customer(credentials, rows, name):
         raise BaseException('No s\'ha actualitzat cap contacte!')
 
 # Will replace the cell value that is equal to @value param for ''
+
+
 def remove_value_from_rows(rows, value):
     return list(map(lambda cellVal: cellVal if cellVal[0] != value else [''], [cellVal for cellVal in rows]))
 
@@ -77,5 +79,7 @@ def delete_customer(credentials, rows, name):
         'values': rows
     }
     service.spreadsheets().values().update(
-        spreadsheetId=SAMPLE_SPREADSHEET_ID_input, range=SAMPLE_RANGE_NAME,
+        spreadsheetId=SPREADSHEET_ID, range=SAMPLE_RANGE_NAME,
         valueInputOption=value_input_option, body=body).execute()
+
+    print(f'https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}')
