@@ -22,11 +22,13 @@ def transform_name(name):
 
 
 def transform_phone(phone):
+    phone = phone.replace(" ", "")
 
     if re.fullmatch(regex_phone_with_country_code, phone):
-        # print(f"'{phone}' is an fully qualified intl. number")
+        # print(f"'{phone}' is a fully qualified intl. number")
         return phone
     else:
         if not re.fullmatch(regex_phone, phone):
-            raise WrongPhoneNumberException(f"Wrong input: The phone {phone} has less than 9 digits or is not a number!")
+            raise WrongPhoneNumberException(
+                f"Wrong input: The phone {phone} has less than 9 digits or is not a number!")
         return f"{PHONE_COUNTRY_CODE}{phone}"
