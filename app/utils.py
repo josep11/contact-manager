@@ -22,7 +22,21 @@ def transform_name(name):
 
 
 def transform_phone(phone):
-    phone = phone.replace(" ", "")
+    """will transform the phone to remove special characters like space, dash, etc and it will check that it is a phone number
+    if there is no country code it will append the spanish (+34) by default
+
+    Args:
+        phone (str): the phone number (i.e. as copied from WhatsApp)
+
+    Raises:
+        WrongPhoneNumberException: the phone number is not ok
+
+    Returns:
+        str: the transformed phone number ready to save into Google Contacts
+    """
+    chars_to_remove = [" ", "(", ")", "-"]
+    for char in chars_to_remove:
+        phone = phone.replace(char, "")
 
     if re.fullmatch(regex_phone_with_country_code, phone):
         # print(f"'{phone}' is a fully qualified intl. number")

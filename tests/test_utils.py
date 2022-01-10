@@ -19,6 +19,10 @@ class IndexText(unittest.TestCase):
         transformed_phone = transform_phone(phone)
         self.assertEqual(transformed_phone, phone, "should not do anything!")
 
+        phone = "+1 (850) 993-1568"
+        transformed_phone = transform_phone(phone)
+        self.assertEqual(transformed_phone, "+18509931568")
+
         self.assertRaises(BaseException, transform_phone, "888")
 
     def test_transform_name(self):
