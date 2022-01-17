@@ -2,7 +2,7 @@ from googleapiclient.discovery import build
 from sty import fg
 import os
 from app.exceptions import ContactDoesNotExistException
-from app.utils import eprint
+from app.utils import eprint, substract_prefix_name
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -68,8 +68,10 @@ def remove_value_from_rows(rows, value):
 def delete_customer(credentials, rows, name):
     customers = [item for sublist in rows for item in sublist]
     if not name in customers:
-        raise ContactDoesNotExistException(
-            f'Error: contact with name "{name}" does not exists on Google Sheets')
+        name = substract_prefix_name(name)
+        if not name in customers:
+            raise ContactDoesNotExistException(
+                f'Error: contact with name "{name}" does not exists on Google Sheets')
 
     rows = remove_value_from_rows(rows, name)
 

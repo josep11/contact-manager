@@ -55,6 +55,7 @@ if __name__ == "__main__":
         eprint(err)
         exit(1)
 
+    # Delete Contact from Google Sheets
     try:
         rows = google_sheets.get_rows(credentials)
         google_sheets.delete_customer(credentials, rows, name)

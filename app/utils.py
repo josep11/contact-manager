@@ -15,6 +15,10 @@ def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 
+def substract_prefix_name(name):
+    return name.replace(PREFIX, "")
+
+
 def transform_name(name):
     if name.startswith(PREFIX):
         return name

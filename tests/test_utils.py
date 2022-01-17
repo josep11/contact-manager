@@ -1,6 +1,6 @@
 import unittest
 
-from app.utils import transform_phone, transform_name
+from app.utils import transform_phone, transform_name, substract_prefix_name
 
 
 class IndexText(unittest.TestCase):
@@ -34,6 +34,10 @@ class IndexText(unittest.TestCase):
         name = "Fl Rev Andreu"
         transformed_name = transform_name(name)
         self.assertEqual(transformed_name, name, "should not do anything!")
+
+        name = "Fl Javi"
+        name_without_prefix = "Javi"
+        self.assertEqual(substract_prefix_name(name), name_without_prefix)
 
 
 if __name__ == "__main__":
