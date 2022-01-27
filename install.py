@@ -40,8 +40,10 @@ def get_credentials():
     """
     home_dir = os.path.expanduser('./')
     credential_dir = os.path.join(home_dir, '.credentials')
+
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
+    
     credential_path = os.path.join(credential_dir,
                                    CREDENTIAL_NAME)
 
