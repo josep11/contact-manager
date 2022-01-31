@@ -62,7 +62,7 @@ def add_customer(credentials, rows, name):
 
 
 def remove_value_from_rows(rows, value):
-    return list(map(lambda cellVal: cellVal if cellVal[0] != value else [''], [cellVal for cellVal in rows]))
+    return list(map(lambda cellVal: cellVal if len(cellVal) > 0 and cellVal[0] != value else [''], [cellVal for cellVal in rows]))
 
 
 def delete_customer(credentials, rows, name):
