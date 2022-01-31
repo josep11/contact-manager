@@ -8,7 +8,7 @@ When creating it will append a prefix "Fl" for the name to indicate Freelancer a
 
 1. Download and have the 'client_secret.json' at the root folder. This can be downloaded from Google Cloud Platform > Contacts Sync App > Credentials
 This will be useful for retriving the API Token via Oauth.
-2. run `python install.py` to do OAuth (make sure to check the permissions) and then the script will save the credentials to the .credentials folder.
+2. (optional) run `python install.py` to do OAuth (make sure to check the permissions) and then the script will save the credentials to the .credentials folder.
 3. `cp .env.example .env` and set environment variables apropiately
 4. [Optional] See [install globally](#install-globally) section
 
@@ -40,7 +40,6 @@ create_contact "full name" "phone number"
 delete_contact "full name"
 
 create_contact -h
-
 ```
 
 <!-- ```bash

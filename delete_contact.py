@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from install import get_credentials
+from google_oauth_wrapper import get_credentials
 from google.auth import credentials
 from app import google_sheets
 from app import google_contacts
@@ -8,8 +8,11 @@ from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
 import argparse
 import os
+
 from send2trash import send2trash
 from sty import fg  # , bg, ef, rs
+
+from app.constants import APPLICATION_NAME, SCOPES
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -42,7 +45,11 @@ def delete_contact_folder(name):
 if __name__ == "__main__":
     name = args.name
 
-    credentials = get_credentials()
+    credentials = get_credentials(
+        PROJECT_ROOT_DIR=os.getcwd(),
+        APPLICATION_NAME=APPLICATION_NAME,
+        SCOPES=SCOPES,
+    )
 
     # Google Contacts Delete
     try:
@@ -62,6 +69,8 @@ if __name__ == "__main__":
     except ContactDoesNotExistException as err:
         msg = err.args
         eprint(fg.red + msg[0] + fg.rs)
+    except IndexError as err:
+        raise err
     except BaseException as err:
         eprint(err)
         exit(1)

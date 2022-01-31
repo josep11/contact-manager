@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from install import get_credentials
+from google_oauth_wrapper import get_credentials
 from google.auth import credentials
 from app import google_sheets
 from app.utils import eprint
@@ -9,6 +9,8 @@ from app.google_contacts import create_contact_google_contacts
 import argparse
 import os
 from sty import fg  # , bg, ef, rs
+
+from app.constants import APPLICATION_NAME, SCOPES
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -48,7 +50,11 @@ if __name__ == "__main__":
 
     contact_dir = create_contact_folder(name)
 
-    credentials = get_credentials()
+    credentials = get_credentials(
+        PROJECT_ROOT_DIR=os.getcwd(),
+        APPLICATION_NAME=APPLICATION_NAME,
+        SCOPES=SCOPES,
+    )
 
     # Google Contacts
     try:
