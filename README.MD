@@ -8,9 +8,11 @@ When creating it will append a prefix "Fl" for the name to indicate Freelancer a
 
 1. Download and have the 'client_secret.json' at the root folder. This can be downloaded from Google Cloud Platform > Contacts Sync App > Credentials
 This will be useful for retriving the API Token via Oauth.
-2. (optional) run `python install.py` to do OAuth (make sure to check the permissions) and then the script will save the credentials to the .credentials folder.
-3. `cp .env.example .env` and set environment variables apropiately
-4. [Optional] See [install globally](#install-globally) section
+2. Install dependencies: `pip install -r requirements.txt`
+> If it's not working you may need to install the private dependencies like so: `pip install git+https://github.com/josep11/google-oauth-wrapper.git`
+3. (optional) run `python install.py` to do OAuth (make sure to check the permissions) and then the script will save the credentials to the .credentials folder.
+4. `cp .env.example .env` and set environment variables apropiately
+5. [Optional] See [install globally](#install-globally) section
 
 ### Install Globally
 
