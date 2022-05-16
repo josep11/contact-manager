@@ -10,6 +10,8 @@ client_secret_*.json
 
 playground.py
 
-build/
-
+# Spec files
 *.spec
+
+# Build files
+build/*
