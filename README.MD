@@ -91,3 +91,28 @@ python -m unittest discover
 ## Future lines
 
 [Nice tutorial to build executables with pyinstaller](https://www.youtube.com/watch?v=3xuN9JQ7j1Q&ab_channel=CodingEntrepreneurs)
+
+### Build and run the built version
+
+Make sure that the .env file includes all variables like in `.env.example`.
+Make sure that the shebang on all the `./*.sh` is the same as your default shell. To get it: `echo $SHELL`. Then
+
+```bash
+./build.sh && source .env && open dist/$APP_NAME.app
+```
+
+## Deployment
+
+Warning: before deploying make sure that you delete the previous build file from /Applications as I found there may be traces that will cause conflicts with newer builds.
+
+### Deploy
+
+```bash
+./deploy.sh
+```
+
+### Build and Deploy
+
+```bash
+./build.sh && ./deploy.sh && source .env && terminal-notifier -message "deployed" -title "$APP_NAME"       
+```

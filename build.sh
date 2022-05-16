@@ -7,13 +7,17 @@
 
 # pyinstaller --noconfirm --clean --onefile --noconsole --name $1 main.py
 
+# Load .env file
+[ -f .env ] && source .env
+
+if [[ "$APP_NAME" == "" ]]; then
+    echo error APP_NAME is not set in .env file && exit 1
+fi
+
 # -------------------------------- #
 # -------- BEGIN CONFIG ---------- #
 # -------------------------------- #
 ENTRY_FILE=example.py
-# TODO: move to .env
-APP_NAME=ContactManager
-BUNDLE_IDENTIFIER=com.josepalsina.contactmanager
 # -------------------------------- #
 # -------- END CONFIG ---------- #
 # -------------------------------- #

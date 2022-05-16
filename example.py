@@ -10,7 +10,6 @@ win.geometry("700x350")
 # Set the default color of the window
 win.config(background="#24f3f0")
 win.config(bg="SkyBlue1")
-win.configure(background="white")
 
 ttk.Label(win, text="Hey There! Welcome to TutorialsPoint", font=("Helvetica 22 bold"), foreground="navy").pack()
 
