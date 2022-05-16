@@ -4,15 +4,35 @@ This is a command line utility to create/delete contacts used to integrate proje
 It will create/delete the contact on the Authenticated Google Account if the contact with the same name does not exist.
 When creating it will append a prefix "Fl" for the name to indicate Freelancer and the phone if there is no country code.
 
-## Install for the first time
+## Create Virtualenv and install deps
+
+Creating python environment with pyenv:
+
+```bash
+pyenv virtualenv 3.10.4 py3.10.4-contact-manager
+```
+
+Activate it from this directory:
+
+```bash
+pyenv local py3.10.4-contact-manager
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+> If it's not working you may need to install the private dependencies like so: `pip install git+https://github.com/josep11/google-oauth-wrapper.git`
+
+## Configure for the first time
 
 1. Download and have the 'client_secret.json' at the root folder. This can be downloaded from Google Cloud Platform > Contacts Sync App > Credentials
 This will be useful for retriving the API Token via Oauth.
-2. Install dependencies: `pip install -r requirements.txt`
-> If it's not working you may need to install the private dependencies like so: `pip install git+https://github.com/josep11/google-oauth-wrapper.git`
-3. (optional) run `python install.py` to do OAuth (make sure to check the permissions) and then the script will save the credentials to the .credentials folder.
-4. `cp .env.example .env` and set environment variables apropiately
-5. [Optional] See [install globally](#install-globally) section
+2. (optional) run `python install.py` to do OAuth (make sure to check the permissions) and then the script will save the credentials to the .credentials folder.
+3. `cp .env.example .env` and set environment variables apropiately
+4. [Optional] See [install globally](#install-globally) section
 
 ### Install Globally
 
