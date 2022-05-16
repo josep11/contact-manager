@@ -30,7 +30,11 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-> If it's not working you may need to install the private dependencies like so: `pip install git+https://github.com/josep11/google-oauth-wrapper.git`
+If it's not working you may need to install the private dependencies like so:
+
+```bash
+pip install git+https://github.com/josep11/google-oauth-wrapper.git
+```
 
 ## Configure for the first time
 
