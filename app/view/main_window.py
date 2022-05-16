@@ -17,7 +17,7 @@ from app.view.styles import *
 class MainWindow(tk.Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title("FlashCards")
+        self.title("Contact Manager")
         self.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
         # self.container = tk.Frame(self)
         self.container = None

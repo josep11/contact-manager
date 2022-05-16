@@ -12,18 +12,10 @@ class HomeView(tk.Frame):
 
     def create_widgets(self):
         self.register_button = tk.Button(
-            self, text="Register", width=8, highlightthickness=0, command=lambda: self.manager.register_tab()
+            self, text="Create Contact", width=8, highlightthickness=0, command=lambda: self.manager.register_tab()
         )
         self.register_button.grid(row=0, column=0)
         self.user_button = tk.Button(
-            self, text="Login", width=8, highlightthickness=0, command=lambda: self.manager.login_tab()
+            self, text="Delete Contact", width=8, highlightthickness=0, command=lambda: self.manager.login_tab()
         )
-        self.user_button.grid(row=1, column=0)
-        # greeting = tk.Label(text="Hello, Tkinter", color=TEXT_COLOR)
-
-        label = tk.Label(
-            text="Hello, Tkinter",
-            foreground="yellow",  # Set the text color to white
-            background="black",  # Set the background color to black
-        )
-        label.pack()
+        self.user_button.grid(row=2, column=0)
