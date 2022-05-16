@@ -9,3 +9,7 @@ client_secret_*.json
 .env
 
 playground.py
+
+build/
+
+*.spec

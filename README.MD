@@ -6,6 +6,12 @@ When creating it will append a prefix "Fl" for the name to indicate Freelancer a
 
 ## Create Virtualenv and install deps
 
+If we are going to build we need to install the python version like this:
+
+```bash
+env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.10.4
+```
+
 Creating python environment with pyenv:
 
 ```bash
@@ -77,3 +83,7 @@ create_contact -h
 # will find all tests named test*.py inside tests director
 python -m unittest discover
 ```
+
+## Future lines
+
+[Nice tutorial to build executables with pyinstaller](https://www.youtube.com/watch?v=3xuN9JQ7j1Q&ab_channel=CodingEntrepreneurs)
