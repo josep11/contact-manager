@@ -51,9 +51,9 @@ pip/list-outdated:
 pip/check:
 	pip-check -u -H
 
-## Pip freeze dependencies into requirements.txt
-pip/freeze:
-	pip freeze > requirements.txt
+## Run pipreqs to save current direct dependencies into requirements.txt
+pip/reqs:
+	pipreqs --force
 
 ## Pip install dependencies from requirements.txt
 pip/install:
