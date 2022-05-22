@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-import sys
 from google_oauth_wrapper import get_credentials
 from google.auth import credentials
 from app import google_sheets
+from app.app_config import AppConfig
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
 from app.google_contacts import create_contact_google_contacts
@@ -10,15 +10,7 @@ import argparse
 import os
 from sty import fg  # , bg, ef, rs
 
-from app.constants import APPLICATION_NAME, SCOPES
-
-from dotenv import load_dotenv
-load_dotenv()
-
-PROJECTS_ROOTDIR = os.getenv("PROJECTS_ROOTDIR")
-if not PROJECTS_ROOTDIR:
-    eprint(fg.red + "Error: environments not set!" + fg.rs)
-    exit(1)
+from app.app_config import AppConfig
 
 try:
     parser = argparse.ArgumentParser()
@@ -37,7 +29,7 @@ def open_directory(targetDirectory):
 
 
 def create_contact_folder(name):
-    contact_dir = os.path.join(PROJECTS_ROOTDIR, name)
+    contact_dir = os.path.join(AppConfig.PROJECTS_ROOTDIR, name)
     if not os.path.exists(contact_dir):
         os.makedirs(contact_dir)
         print(f'Created directory: {contact_dir}')
@@ -52,8 +44,8 @@ if __name__ == "__main__":
 
     credentials = get_credentials(
         PROJECT_ROOT_DIR=os.getcwd(),
-        APPLICATION_NAME=APPLICATION_NAME,
-        SCOPES=SCOPES,
+        APPLICATION_NAME=AppConfig.APPLICATION_NAME,
+        SCOPES=AppConfig.SCOPES,
     )
 
     # Google Contacts

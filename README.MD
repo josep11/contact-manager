@@ -66,6 +66,7 @@ create_contact -h
 
 <!-- ```bash
 ./create_contact.py "AAAAAA TestContactName" "888888888"
+./delete_contact.py "AAAAAA TestContactName"
 # python create_contact.py "AAAAAA TestContactName" "888888888"
 ``` -->
 

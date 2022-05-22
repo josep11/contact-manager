@@ -20,7 +20,7 @@ def create_service(credentials):
     return service
 
 
-def get_rows(credentials):
+def get_rows(credentials) -> list:
     """Gets the list of customers from Google Spreadsheet
 
     Returns:
@@ -28,7 +28,7 @@ def get_rows(credentials):
     """
     service = create_service(credentials)
     result = service.spreadsheets().values().get(
-        spreadsheetId=SPREADSHEET_ID,  range=SAMPLE_RANGE_NAME).execute()
+        spreadsheetId=SPREADSHEET_ID, range=SAMPLE_RANGE_NAME).execute()
     rows = result.get('values', [])
     print('{0} contacts retrieved from spreadsheet'.format(len(rows)))
     return rows

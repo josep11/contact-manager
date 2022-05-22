@@ -4,6 +4,7 @@ from google_oauth_wrapper import get_credentials
 from google.auth import credentials
 from app import google_sheets
 from app import google_contacts
+from app.app_config import AppConfig
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
 import argparse
@@ -11,16 +12,6 @@ import os
 
 from send2trash import send2trash
 from sty import fg  # , bg, ef, rs
-
-from app.constants import APPLICATION_NAME, SCOPES
-
-from dotenv import load_dotenv
-load_dotenv()
-
-PROJECTS_ROOTDIR = os.getenv("PROJECTS_ROOTDIR")
-if not PROJECTS_ROOTDIR:
-    eprint(fg.red + "Error: environments not set!" + fg.rs)
-    exit(1)
 
 try:
     parser = argparse.ArgumentParser()
@@ -32,7 +23,7 @@ except ImportError:
 
 
 def delete_contact_folder(name):
-    contact_dir = os.path.join(PROJECTS_ROOTDIR, name)
+    contact_dir = os.path.join(AppConfig.PROJECTS_ROOTDIR, name)
     try:
         send2trash(contact_dir)
     except OSError as e:
@@ -47,8 +38,8 @@ if __name__ == "__main__":
 
     credentials = get_credentials(
         PROJECT_ROOT_DIR=os.getcwd(),
-        APPLICATION_NAME=APPLICATION_NAME,
-        SCOPES=SCOPES,
+        APPLICATION_NAME=AppConfig.APPLICATION_NAME,
+        SCOPES=AppConfig.SCOPES,
     )
 
     # Google Contacts Delete

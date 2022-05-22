@@ -9,3 +9,10 @@ client_secret_*.json
 .env
 
 playground.py
+
+# Spec files
+*.spec
+
+# Build files
+build/*
+dist/*
