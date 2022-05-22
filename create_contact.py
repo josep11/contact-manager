@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from google_oauth_wrapper import get_credentials
 from google.auth import credentials
-from app import google_sheets
 from app.app_config import AppConfig
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
@@ -11,6 +10,8 @@ import os
 from sty import fg  # , bg, ef, rs
 
 from app.app_config import AppConfig
+
+from app.wrappers_factory import google_sheets_wrapper
 
 try:
     parser = argparse.ArgumentParser()
@@ -60,8 +61,8 @@ if __name__ == "__main__":
         exit(1)
 
     # Google Sheet Customer Database list: add the customer
-    rows = google_sheets.get_rows(credentials)
-    google_sheets.add_customer(credentials, rows, name)
+    rows = google_sheets_wrapper.get_rows()
+    google_sheets_wrapper.add_customer(rows, name)
 
     # opening the directory in finder
     open_directory(contact_dir)
