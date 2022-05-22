@@ -1,9 +1,6 @@
 #!/usr/bin/env python
-import sys
-from google_oauth_wrapper import get_credentials
-from google.auth import credentials
 from app import google_sheets_wrapper
-from app import google_contacts
+from app import google_contacts_wrapper
 from app.app_config import AppConfig
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
@@ -13,7 +10,7 @@ import os
 from send2trash import send2trash
 from sty import fg  # , bg, ef, rs
 
-from app.wrappers_factory import google_sheets_wrapper
+from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper
 
 try:
     parser = argparse.ArgumentParser()
@@ -38,15 +35,9 @@ def delete_contact_folder(name):
 if __name__ == "__main__":
     name = args.name
 
-    credentials = get_credentials(
-        PROJECT_ROOT_DIR=os.getcwd(),
-        APPLICATION_NAME=AppConfig.APPLICATION_NAME,
-        SCOPES=AppConfig.SCOPES,
-    )
-
     # Google Contacts Delete
     try:
-        google_contacts.delete_contact_google_contacts(credentials, name)
+        google_contacts_wrapper.delete_contact_google_contacts(name)
     except ContactDoesNotExistException as err:
         msg = err.args
         eprint(fg.red + msg[0] + fg.rs)

@@ -1,5 +1,6 @@
 import os
 from app.app_config import AppConfig
+from app.google_contacts_wrapper import GoogleContactsWrapper
 from app.google_sheets_wrapper import GoogleSheetsWrapper
 from google_oauth_wrapper import get_credentials
 
@@ -10,3 +11,5 @@ credentials = get_credentials(
 )
 
 google_sheets_wrapper = GoogleSheetsWrapper(credentials)
+
+google_contacts_wrapper = GoogleContactsWrapper(credentials)

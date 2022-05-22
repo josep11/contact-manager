@@ -1,17 +1,14 @@
 #!/usr/bin/env python
-from google_oauth_wrapper import get_credentials
-from google.auth import credentials
 from app.app_config import AppConfig
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
-from app.google_contacts import create_contact_google_contacts
 import argparse
 import os
 from sty import fg  # , bg, ef, rs
 
 from app.app_config import AppConfig
 
-from app.wrappers_factory import google_sheets_wrapper
+from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper
 
 try:
     parser = argparse.ArgumentParser()
@@ -43,15 +40,10 @@ if __name__ == "__main__":
 
     contact_dir = create_contact_folder(name)
 
-    credentials = get_credentials(
-        PROJECT_ROOT_DIR=os.getcwd(),
-        APPLICATION_NAME=AppConfig.APPLICATION_NAME,
-        SCOPES=AppConfig.SCOPES,
-    )
-
     # Google Contacts
     try:
-        create_contact_google_contacts(credentials, name, phone)
+        google_contacts_wrapper.create_contact_google_contacts(
+            name, phone)
     except ContactAlreadyExistException as err:
         msg = err.args
         eprint(fg.red + msg[0] + fg.rs)
