@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+
+from app.folder_manager import FolderManager
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
 import argparse
@@ -20,24 +22,18 @@ except ImportError:
     args = None
 
 
+folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
+
 def open_directory(targetDirectory):
     from subprocess import call
     call(["open", targetDirectory])
-
-
-def create_contact_folder(name):
-    contact_dir = os.path.join(AppConfig.PROJECTS_ROOTDIR, name)
-    if not os.path.exists(contact_dir):
-        os.makedirs(contact_dir)
-        print(f'Created directory: {contact_dir}')
-    return contact_dir
 
 
 if __name__ == "__main__":
     name = args.name
     phone = args.phone
 
-    contact_dir = create_contact_folder(name)
+    contact_dir = folder_manager.create_contact_folder(name)
 
     # Google Contacts
     try:
