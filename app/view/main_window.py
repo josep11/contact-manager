@@ -1,9 +1,10 @@
 import tkinter as tk
 from tkinter import Menu
+import tkinter.messagebox
+from app.app_config import AppConfig
 
-import tkinter as tk
-
-from app.view.frames.home_view import HomeView
+from app.controller.main_controller import MainController
+from app.view.frames.create_contact_frame import CreateContactFrame
 
 # from views.home_view import HomeView
 # from views.register_view import RegisterView
@@ -12,6 +13,8 @@ from app.view.frames.home_view import HomeView
 # from views.deck_view import DeckView
 # from views.card_view import CardView
 from app.view.styles import *
+
+from app.logger_wrapper import logger
 
 
 class MainWindow(tk.Tk):
@@ -47,7 +50,21 @@ class MainWindow(tk.Tk):
         #     # Colacamos los frames en formato grid ocupando el espacio en las 4 direcciones
         #     frame.grid(row=0, column=0, sticky=tk.NSEW)
         # # Llamamos al metodo de mostrar pantalla con la pantalla HomeScreen
-        self.switch_view(HomeView)
+        self.switch_view(CreateContactFrame)
+
+    def set_controller(self, controller: MainController):
+        self.controller = controller
+        if self.container:
+            self.container.set_controller(controller)
+        else:
+            logger.error(
+                f"should have container initialised before calling set_controller")
+
+    def show_error(self, msg: str):
+        tkinter.messagebox.showerror(title=AppConfig.APP_NAME, message=msg)
+
+    def show_info(self, msg: str):
+        tkinter.messagebox.showinfo(title=AppConfig.APP_NAME, message=msg)
 
     # def switch_view(self, container):
     #     # Saca el frame desde el diccionario
@@ -66,8 +83,8 @@ class MainWindow(tk.Tk):
         self.container.grid_rowconfigure(1, weight=1)
 
     # Handle Views
-    def home_tab(self):
-        self.switch_view(HomeView)
+    # def home_tab(self):
+    #     self.switch_view(HomeView)
 
     # def register_tab(self):
     #     self.switch_view(RegisterView)

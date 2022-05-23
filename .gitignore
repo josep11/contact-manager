@@ -7,9 +7,10 @@ __pycache__/
 client_secret.json
 client_secret_*.json
 
-# env files
+# Env files
 .env
 .env.test
+.env.dev
 
 playground.py
 
@@ -19,3 +20,6 @@ playground.py
 # Build files
 build/*
 dist/*
+
+# Log files
+debug.log

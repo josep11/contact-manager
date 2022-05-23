@@ -1,8 +1,7 @@
-
-
 import os
 
 from send2trash import send2trash
+from subprocess import call
 
 
 class FolderManager:
@@ -26,3 +25,6 @@ class FolderManager:
             os.makedirs(contact_dir)
             print(f'Created directory: {contact_dir}')
         return contact_dir
+
+    def open_directory(self, target_directory):
+        call(["open", target_directory])

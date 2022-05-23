@@ -8,11 +8,16 @@ load_dotenv()
 
 ENV = os.getenv('ENV')
 
-isDev = ENV == "dev"
+isDev = False
 
 if "test" == ENV:
     print(f'overriding env vars with {ENV}')
     load_dotenv(".env.test", override=True)
+
+if "dev" == ENV:
+    print(f'overriding env vars with {ENV}')
+    load_dotenv(".env.dev", override=True)
+    isDev = ENV == "dev"
 
 PROJECTS_ROOTDIR = os.getenv("PROJECTS_ROOTDIR")
 if not PROJECTS_ROOTDIR:

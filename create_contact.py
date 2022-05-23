@@ -24,11 +24,6 @@ except ImportError:
 
 folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
 
-def open_directory(targetDirectory):
-    from subprocess import call
-    call(["open", targetDirectory])
-
-
 if __name__ == "__main__":
     name = args.name
     phone = args.phone
@@ -52,4 +47,4 @@ if __name__ == "__main__":
     google_sheets_wrapper.add_customer(rows, name)
 
     # opening the directory in finder
-    open_directory(contact_dir)
+    folder_manager.open_directory(contact_dir)
