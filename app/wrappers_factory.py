@@ -10,6 +10,7 @@ credentials = get_credentials(
     SCOPES=AppConfig.SCOPES,
 )
 
-google_sheets_wrapper = GoogleSheetsWrapper(credentials)
+google_sheets_wrapper = GoogleSheetsWrapper(
+    credentials, AppConfig.SPREADSHEET_ID)
 
 google_contacts_wrapper = GoogleContactsWrapper(credentials)

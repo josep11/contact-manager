@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from app.app_config import AppConfig
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
 import argparse
