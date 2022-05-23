@@ -64,11 +64,16 @@ delete_contact "full name"
 create_contact -h
 ```
 
-<!-- ```bash
-./create_contact.py "AAAAAA TestContactName" "888888888"
-./delete_contact.py "AAAAAA TestContactName"
-# python create_contact.py "AAAAAA TestContactName" "888888888"
-``` -->
+To run an end to end test:
+
+```bash
+./end2endtest.sh
+```
+
+If running create_contact or delete_contact with ENV=test it will load:
+
+1) the `.env` file
+2) the `.env.test` file. Overriding the values.
 
 ## Development
 

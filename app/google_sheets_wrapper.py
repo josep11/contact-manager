@@ -7,23 +7,15 @@ from app.utils import eprint, substract_prefix_name
 
 from app.google_sheets_wrapper_interface import GoogleSheetsWrapperInterface
 
-from dotenv import load_dotenv
-load_dotenv()
-
-# TODO: should be injected
-SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
-if not SPREADSHEET_ID:
-    eprint(fg.red + "Error: environments SPREADSHEET_ID not set!" + fg.rs)
-    exit(1)
-
 SAMPLE_RANGE_NAME = 'Customers'  # 'A2:A1000'
 
 
 class GoogleSheetsWrapper(GoogleSheetsWrapperInterface):
 
-    def __init__(self, credentials):
+    def __init__(self, credentials, spreadsheet_id: str):
         self.credentials = credentials
         self.service = build('sheets', 'v4', credentials=self.credentials)
+        self.spreadsheet_id = spreadsheet_id
 
     # ---------------------
     # ----  SHARED FNS ----
@@ -44,7 +36,7 @@ class GoogleSheetsWrapper(GoogleSheetsWrapperInterface):
             list[str]
         """
         result = self.service.spreadsheets().values().get(
-            spreadsheetId=SPREADSHEET_ID, range=SAMPLE_RANGE_NAME).execute()
+            spreadsheetId=self.spreadsheet_id, range=SAMPLE_RANGE_NAME).execute()
         rows = result.get('values', [])
         print('{0} contacts retrieved from spreadsheet'.format(len(rows)))
         return rows
@@ -64,7 +56,7 @@ class GoogleSheetsWrapper(GoogleSheetsWrapperInterface):
             'values': rows
         }
         result = self.service.spreadsheets().values().update(
-            spreadsheetId=SPREADSHEET_ID, range=SAMPLE_RANGE_NAME,
+            spreadsheetId=self.spreadsheet_id, range=SAMPLE_RANGE_NAME,
             valueInputOption=value_input_option, body=body).execute()
 
         updated_rows = result.get('updatedCells')
@@ -87,7 +79,7 @@ class GoogleSheetsWrapper(GoogleSheetsWrapperInterface):
             'values': rows
         }
         self.service.spreadsheets().values().update(
-            spreadsheetId=SPREADSHEET_ID, range=SAMPLE_RANGE_NAME,
+            spreadsheetId=self.spreadsheet_id, range=SAMPLE_RANGE_NAME,
             valueInputOption=value_input_option, body=body).execute()
 
-        print(f'https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}')
+        print(f'https://docs.google.com/spreadsheets/d/{self.spreadsheet_id}')

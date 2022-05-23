@@ -6,7 +6,10 @@ __pycache__/
 
 client_secret.json
 client_secret_*.json
+
+# env files
 .env
+.env.test
 
 playground.py
 
