@@ -1,7 +1,15 @@
 import logging
 import os
-from app.app_config import AppConfig
 
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+log_filename = f"/tmp/contactmanager.log"
+logging.basicConfig(filename=log_filename,
+                    encoding="utf-8", level=logging.DEBUG)
+
+
+""" 
+from app.app_config import AppConfig
 home = os.path.expanduser("~")
 
 logger = logging.getLogger()
@@ -32,3 +40,4 @@ else:
     logging.basicConfig(
         filename=log_file, encoding="utf-8", level=logging.DEBUG, format="%(asctime)s - %(levelname)s - %(message)s"
     )
+ """
