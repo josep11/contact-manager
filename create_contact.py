@@ -1,9 +1,12 @@
 #!/usr/bin/env python
+
+from app.folder_manager import FolderManager
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
 import argparse
 import os
 from sty import fg  # , bg, ef, rs
+from sys import exit
 
 from app.app_config import AppConfig
 
@@ -20,24 +23,13 @@ except ImportError:
     args = None
 
 
-def open_directory(targetDirectory):
-    from subprocess import call
-    call(["open", targetDirectory])
-
-
-def create_contact_folder(name):
-    contact_dir = os.path.join(AppConfig.PROJECTS_ROOTDIR, name)
-    if not os.path.exists(contact_dir):
-        os.makedirs(contact_dir)
-        print(f'Created directory: {contact_dir}')
-    return contact_dir
-
+folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
 
 if __name__ == "__main__":
     name = args.name
     phone = args.phone
 
-    contact_dir = create_contact_folder(name)
+    contact_dir = folder_manager.create_contact_folder(name)
 
     # Google Contacts
     try:
@@ -56,4 +48,4 @@ if __name__ == "__main__":
     google_sheets_wrapper.add_customer(rows, name)
 
     # opening the directory in finder
-    open_directory(contact_dir)
+    folder_manager.open_directory(contact_dir)
