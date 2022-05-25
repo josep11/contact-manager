@@ -7,6 +7,7 @@ from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
 import argparse
 import os
+from sys import exit
 
 from send2trash import send2trash
 from sty import fg  # , bg, ef, rs

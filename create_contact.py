@@ -6,6 +6,7 @@ from app.exceptions import ContactAlreadyExistException
 import argparse
 import os
 from sty import fg  # , bg, ef, rs
+from sys import exit
 
 from app.app_config import AppConfig
 
