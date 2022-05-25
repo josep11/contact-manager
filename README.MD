@@ -120,5 +120,5 @@ Warning: before deploying make sure that you delete the previous build file from
 ### Build and Deploy
 
 ```bash
-./build.sh && ./deploy.sh && source .env && terminal-notifier -message "deployed" -title "$APP_NAME"       
+./build_and_deploy.sh
 ```

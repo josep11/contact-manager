@@ -7,6 +7,6 @@ from app.app_config import AppConfig
 if __name__ == "__main__":
     credentials = get_credentials(
         PROJECT_ROOT_DIR=os.getcwd(),
-        APPLICATION_NAME=AppConfig.APPLICATION_NAME,
+        APP_NAME=AppConfig.APP_NAME,
         SCOPES=AppConfig.SCOPES,
     )
