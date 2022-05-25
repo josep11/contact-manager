@@ -17,7 +17,8 @@ fi
 # -------------------------------- #
 # -------- BEGIN CONFIG ---------- #
 # -------------------------------- #
-ENTRY_FILE=example.py
+# PRODUCTION_BUILD=0
+ENTRY_FILE=contact_manager_gui.py
 # -------------------------------- #
 # -------- END CONFIG ---------- #
 # -------------------------------- #
@@ -37,13 +38,19 @@ fi
 # trying to set the python library path for pyinstaller to know where it is in order to bundle it
 export DYLD_LIBRARY_PATH=$(which python)
 
-python -m PyInstaller --windowed --noconfirm --clean --onefile --noconsole \
+python -m PyInstaller --noconfirm --log-level=WARN \
+    --clean --onefile -w \
     --osx-bundle-identifier=$BUNDLE_IDENTIFIER \
     --name $APP_NAME \
     --exclude-module "$excluded_modules" \
-    --debug=all \
+    --add-data ".env:." \
+    --add-data "client_secret.json:." \
+    --debug=imports \
     $ENTRY_FILE
-
+    
+    # --add-data ".credentials:." \
+    # 
+    # -w \
     # --icon=paste.icns \
 
 #    --add-binary edit_paste_app:edit_paste_app \
