@@ -1,22 +1,19 @@
-import logging
-import os
 import sys
 from sys import exit
 
 from app.logger_wrapper import logger
 from app.app_config import AppConfig
 
+from app.view.main_window import MainWindow
+
+from app.controller.main_controller import MainController
+from app.folder_manager import FolderManager
+
+from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper
 # logger.info(AppConfig.APP_NAME)
 
-# TODO: move outside of main again
+
 def main():
-    from app.view.main_window import MainWindow
-
-    from app.controller.main_controller import MainController
-    from app.folder_manager import FolderManager
-
-    from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper
-
     folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
     main_window = MainWindow()
 
