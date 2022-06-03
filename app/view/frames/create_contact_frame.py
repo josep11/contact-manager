@@ -2,7 +2,6 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from app.controller.main_controller import MainController
 from app.utils import random_with_N_digits
-from app.view.frames.delete_contact_frame import DeleteContactFrame
 
 from app.view.styles import *
 from app.app_config import AppConfig

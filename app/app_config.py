@@ -3,10 +3,9 @@ from sty import fg  # , bg, ef, rs
 from sys import exit
 
 from dotenv import load_dotenv
-from app.utils import eprint, get_bundle_dir
+from app.utils import get_bundle_dir
 
 from os import path
-import sys
 
 from app.logger_wrapper import logger
 

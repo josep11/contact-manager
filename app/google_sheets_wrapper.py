@@ -1,9 +1,6 @@
-from mimetypes import init
 from googleapiclient.discovery import build
-from sty import fg
-import os
 from app.exceptions import ContactDoesNotExistException
-from app.utils import eprint, substract_prefix_name
+from app.utils import substract_prefix_name
 
 from app.google_sheets_wrapper_interface import GoogleSheetsWrapperInterface
 

@@ -4,7 +4,6 @@ from app.folder_manager import FolderManager
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
 import argparse
-import os
 from sty import fg  # , bg, ef, rs
 from sys import exit
 

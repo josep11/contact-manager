@@ -1,5 +1,4 @@
 import sys
-from sys import exit
 
 from app.logger_wrapper import logger
 from app.app_config import AppConfig

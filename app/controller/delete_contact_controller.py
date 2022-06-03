@@ -1,8 +1,3 @@
-import sys
-from app.exceptions import ContactAlreadyExistException
-from app.folder_manager import FolderManager
-from app.google_contacts_wrapper_interface import GoogleContactsWrapperInterface
-from app.google_sheets_wrapper_interface import GoogleSheetsWrapperInterface
 # from app.view.main_window import MainWindow
 
 
