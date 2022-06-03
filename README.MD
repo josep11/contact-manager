@@ -115,6 +115,17 @@ Make sure that the shebang on all the `./*.sh` is the same as your default shell
 
 Warning: before deploying make sure that you delete the previous build file from /Applications as I found there may be traces that will cause conflicts with newer builds.
 
+### Before Deploy
+
+#### Remove unused imports
+
+Either of the two:
+
+```bash
+autoflake -i --remove-all-unused-imports *.py **/**.py
+python -m autoflake -i --remove-all-unused-imports *.py **/**.py
+```
+
 ### Deploy
 
 ```bash
