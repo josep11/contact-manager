@@ -73,6 +73,8 @@ class MainController:
             self.main_window.show_error("Please fill all the fields")
             return False
 
+        ran_ok = True
+
         # Google Contacts Delete
         try:
             self.google_contacts_wrapper.delete_contact_google_contacts(name)
@@ -80,11 +82,11 @@ class MainController:
             msg = err.args
             self.main_window.show_error(msg)
             logger.error(err)
-            return False
+            ran_ok = False
         except BaseException as err:
             ex_type, ex_value, ex_traceback = sys.exc_info()
             self.main_window.show_error(ex_value)
-            return False
+            ran_ok = False
 
         # Delete Contact from Google Sheets
         try:
@@ -100,13 +102,13 @@ class MainController:
         except BaseException as err:
             ex_type, ex_value, ex_traceback = sys.exc_info()
             self.main_window.show_error(ex_value)
-            return False
+            ran_ok = False
 
         # Sending it to the trash (not completely remove)
         self.folder_manager.delete_contact_folder(name)
 
         self.main_window.show_info("Contact Deleted Successfully")
-        return True
+        return ran_ok
 
     def switch_to_delete_frame(self):
         self.delete_contact_controller = DeleteContactController(
