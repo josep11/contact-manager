@@ -9,3 +9,6 @@ fi
 
 trash /Applications/$APP_NAME.app
 cp -R dist/$APP_NAME.app /Applications/
+
+# Now remove it from dist
+trash dist/$APP_NAME.app
