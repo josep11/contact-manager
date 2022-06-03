@@ -1,4 +1,3 @@
-from os import path
 import os
 from random import randint
 import re
