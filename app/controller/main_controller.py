@@ -118,7 +118,6 @@ class MainController:
             self.delete_contact_controller)
 
     def switch_to_create_frame(self):
-        TODO: 'should implement this. But before that do the refractor (everything inside main controller into a create_contact_frame)')
+        # TODO: 'should implement this. But before that do the refractor (everything inside main controller into a create_contact_frame)')
         raise NotImplemented(
             'should implement this. But before that do the refractor (everything inside main controller into a create_contact_frame)')
-        pass
