@@ -1,16 +1,12 @@
 import tkinter as tk
+import tkinter.ttk as ttk
 import tkinter.messagebox
+from turtle import bgcolor
 from app.app_config import AppConfig
 
 from app.controller.main_controller import MainController
 from app.view.frames.create_contact_frame import CreateContactFrame
 
-# from views.home_view import HomeView
-# from views.register_view import RegisterView
-# from views.login_view import LoginView
-# from views.user_view import UserView
-# from views.deck_view import DeckView
-# from views.card_view import CardView
 from app.view.styles import *
 
 from app.logger_wrapper import logger
@@ -20,10 +16,30 @@ class MainWindow(tk.Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title("Contact Manager")
-        self.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
-        # self.container = tk.Frame(self)
+        self.config(padx=50, pady=50,
+                    bg=BACKGROUND_COLOR
+                    )
         self.container = None
-        # self.switch_view(CreateContactFrame)
+        s = ttk.Style()
+        s.configure('.',
+                    # font=('Helvetica', 12, 'bold'),
+                    background=BACKGROUND_COLOR,
+                    )
+        s.configure('TButton', foreground=TEXT_COLOR )
+
+        # https://tkdocs.com/tutorial/styles.html
+        # https://docs.python.org/es/3.10/library/tkinter.ttk.html
+
+        # ('aqua', 'clam', 'alt', 'default', 'classic')
+        s.theme_use('clam')
+        # s.configure('JS.TButton',
+        #             # font=('Helvetica', 12),
+        #             overrelief=tk.RIDGE,
+        #             foreground='black', 
+        #             background='blue',
+        #             # foreground=COMPONENT_COLOR
+        #             )
+
 
     def set_controller(self, controller: MainController):
         self.controller = controller
@@ -39,12 +55,6 @@ class MainWindow(tk.Tk):
     def show_info(self, msg: str):
         tkinter.messagebox.showinfo(title=AppConfig.APP_NAME, message=msg)
 
-    # def switch_view(self, container):
-    #     # Saca el frame desde el diccionario
-    #     frame = self.frames[container]
-    #     # Pone enfrente la pantalla correspondiente
-    #     frame.tkraise()
-
     def switch_view(self, frame_class):
         """Destroys current frame and replaces it with a new one."""
         new_frame = frame_class(self)
@@ -54,4 +64,3 @@ class MainWindow(tk.Tk):
         self.container.pack(side="top", fill="both", expand=True)
         self.container.grid_columnconfigure(1, weight=1)
         self.container.grid_rowconfigure(1, weight=1)
-

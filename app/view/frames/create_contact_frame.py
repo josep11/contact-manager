@@ -12,7 +12,7 @@ class CreateContactFrame(tk.Frame):
         super().__init__()
         self.manager = manager
         self.config(padx=50, pady=50,
-                    bg=BACKGROUND_COLOR
+                    bg=BACKGROUND_COLOR,
                     )
         self.create_widgets()
         self.controller = None
@@ -28,7 +28,6 @@ class CreateContactFrame(tk.Frame):
         self.nom.delete(0, tk.END)
         self.telefon.delete(0, tk.END)
 
-    
     def switch_to_delete_frame(self):
         self.controller.switch_to_delete_frame()
 
@@ -57,10 +56,9 @@ class CreateContactFrame(tk.Frame):
             self, text="Create Contact", command=self.created_button_pressed)
         create_contact_button.grid(column=1, row=3, sticky=tk.E, padx=5, pady=5,
                                    )
-        
+
         # go to delete button
         go_to_delete_button = ttk.Button(
             self, text="Go To Delete", command=self.switch_to_delete_frame)
         go_to_delete_button.grid(column=1, row=5, sticky=tk.E, padx=5, pady=5,
-                                   )
-        
+                                 )
