@@ -1,6 +1,8 @@
 import sys
+from app.controller.create_contact_controller import CreateContactController
 from app.controller.delete_contact_controller import DeleteContactController
 from app.view.frames.delete_contact_frame import DeleteContactFrame
+from app.view.frames.create_contact_frame import CreateContactFrame
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
 from app.folder_manager import FolderManager
 from app.google_contacts_wrapper_interface import GoogleContactsWrapperInterface
@@ -107,7 +109,8 @@ class MainController:
         # Sending it to the trash (not completely remove)
         self.folder_manager.delete_contact_folder(name)
 
-        self.main_window.show_info("Contact Deleted Successfully")
+        if ran_ok:
+            self.main_window.show_info("Contact Deleted Successfully")
         return ran_ok
 
     def switch_to_delete_frame(self):
@@ -120,6 +123,10 @@ class MainController:
             self.delete_contact_controller)
 
     def switch_to_create_frame(self):
-        # TODO: 'should implement this. But before that do the refractor (everything inside main controller into a create_contact_frame)')
-        raise NotImplemented(
-            'should implement this. But before that do the refractor (everything inside main controller into a create_contact_frame)')
+        self.create_contact_controller = CreateContactController(
+            self.main_window,
+            self,
+        )
+        self.main_window.switch_view(CreateContactFrame)
+        self.main_window.container.set_controller(
+            self.create_contact_controller)
