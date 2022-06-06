@@ -4,6 +4,7 @@ from datetime import datetime
 
 from app.logger_wrapper import logger
 from app.app_config import AppConfig
+from app.view.frames.create_contact_frame import CreateContactFrame
 
 from app.view.main_window import MainWindow
 
@@ -21,6 +22,7 @@ def main():
 
     folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
     main_window = MainWindow()
+    main_window.switch_view(CreateContactFrame)
 
     main_controller = MainController(
         main_window, google_sheets_wrapper, google_contacts_wrapper, folder_manager)
