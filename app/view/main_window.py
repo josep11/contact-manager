@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import Menu
 import tkinter.messagebox
 from app.app_config import AppConfig
 

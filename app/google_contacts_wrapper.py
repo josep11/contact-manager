@@ -4,7 +4,7 @@ from __future__ import print_function
 from googleapiclient.discovery import build
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
 from app.google_contacts_wrapper_interface import GoogleContactsWrapperInterface
-from app.utils import eprint, transform_name, transform_phone
+from app.utils import transform_name, transform_phone
 
 
 class GoogleContactsWrapper(GoogleContactsWrapperInterface):

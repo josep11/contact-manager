@@ -1,8 +1,12 @@
-# Google Contacts Manager CLI
+# Google Contacts Manager
 
-This is a command line utility to create/delete contacts used to integrate projects with ERP for freelancers.
+This is a command line and GUI utility to create/delete contacts used to integrate projects with ERP for freelancers.
 It will create/delete the contact on the Authenticated Google Account if the contact with the same name does not exist.
 When creating it will append a prefix "Fl" for the name to indicate Freelancer and the phone if there is no country code.
+
+## Icons
+
+[Nice page with free icons](https://iconarchive.com/)
 
 ## Create Virtualenv and install deps
 
@@ -110,6 +114,17 @@ Make sure that the shebang on all the `./*.sh` is the same as your default shell
 ## Deployment
 
 Warning: before deploying make sure that you delete the previous build file from /Applications as I found there may be traces that will cause conflicts with newer builds.
+
+### Before Deploy
+
+#### Remove unused imports
+
+Either of the two:
+
+```bash
+autoflake -i --remove-all-unused-imports *.py **/**.py
+python -m autoflake -i --remove-all-unused-imports *.py **/**.py
+```
 
 ### Deploy
 

@@ -1,5 +1,6 @@
 import sys
 from sys import exit
+from datetime import datetime
 
 from app.logger_wrapper import logger
 from app.app_config import AppConfig
@@ -14,6 +15,10 @@ from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper
 
 
 def main():
+    logger.info("#" * 20)
+    logger.info(datetime.now().isoformat())
+    logger.info("#" * 20)
+
     folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
     main_window = MainWindow()
 

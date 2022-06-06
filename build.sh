@@ -42,6 +42,7 @@ python -m PyInstaller --noconfirm --log-level=WARN \
     --clean --onefile -w \
     --osx-bundle-identifier=$BUNDLE_IDENTIFIER \
     --name $APP_NAME \
+    --icon=contact-manager.icns \
     --exclude-module "$excluded_modules" \
     --add-data ".env:." \
     --add-data "client_secret.json:." \
@@ -56,13 +57,3 @@ python -m PyInstaller --noconfirm --log-level=WARN \
 #    --add-binary edit_paste_app:edit_paste_app \
 
 exit
-
-echo build w debug options
-
-pyinstaller --noconfirm --clean --onefile --noconsole \
-    --osx-bundle-identifier=com.josepalsina.editpasteapp \
-    --icon=paste.icns \
-    --name EditPasteApp \
-    --debug=imports \
-    --log-level=DEBUG \
-    entry.py

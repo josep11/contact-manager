@@ -1,4 +1,3 @@
-import os
 import sys
 from app.app_config import AppConfig
 from app.google_contacts_wrapper import GoogleContactsWrapper

@@ -4,12 +4,10 @@ from app import google_contacts_wrapper
 from app.app_config import AppConfig
 from app.folder_manager import FolderManager
 from app.utils import eprint
-from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
+from app.exceptions import ContactDoesNotExistException
 import argparse
-import os
 from sys import exit
 
-from send2trash import send2trash
 from sty import fg  # , bg, ef, rs
 
 from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper

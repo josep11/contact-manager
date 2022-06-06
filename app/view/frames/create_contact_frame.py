@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from app.controller.main_controller import MainController
 from app.utils import random_with_N_digits
 
 from app.view.styles import *
@@ -14,8 +15,9 @@ class CreateContactFrame(tk.Frame):
                     bg=BACKGROUND_COLOR
                     )
         self.create_widgets()
+        self.controller = None
 
-    def set_controller(self, controller):
+    def set_controller(self, controller: MainController):
         self.controller = controller
 
     def created_button_pressed(self):
@@ -25,6 +27,10 @@ class CreateContactFrame(tk.Frame):
     def clear_entries(self):
         self.nom.delete(0, tk.END)
         self.telefon.delete(0, tk.END)
+
+    
+    def switch_to_delete_frame(self):
+        self.controller.switch_to_delete_frame()
 
     def create_widgets(self):
 
@@ -51,3 +57,11 @@ class CreateContactFrame(tk.Frame):
             self, text="Create Contact", command=self.created_button_pressed)
         create_contact_button.grid(column=1, row=3, sticky=tk.E, padx=5, pady=5,
                                    )
+        
+        
+        # go to delete button
+        go_to_delete_button = ttk.Button(
+            self, text="Go To Delete", command=self.switch_to_delete_frame)
+        go_to_delete_button.grid(column=1, row=5, sticky=tk.E, padx=5, pady=5,
+                                   )
+        
