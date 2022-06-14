@@ -28,6 +28,7 @@ if __name__ == "__main__":
     name = args.name
     phone = args.phone
 
+    # TODO: use drive wrapper
     contact_dir = folder_manager.create_contact_folder(name)
 
     # Google Contacts

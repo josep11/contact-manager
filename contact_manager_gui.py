@@ -11,7 +11,7 @@ from app.view.main_window import MainWindow
 from app.controller.main_controller import MainController
 from app.folder_manager import FolderManager
 
-from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper
+from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper, google_drive_wrapper
 # logger.info(AppConfig.APP_NAME)
 
 
@@ -25,7 +25,13 @@ def main():
     main_window.switch_view(CreateContactFrame)
 
     main_controller = MainController(
-        main_window, google_sheets_wrapper, google_contacts_wrapper, folder_manager)
+        main_window,
+        google_sheets_wrapper,
+        google_contacts_wrapper,
+        google_drive_wrapper,
+        # TODO: deprecate folder_manager
+        folder_manager
+    )
 
     main_window.set_controller(main_controller)
 
