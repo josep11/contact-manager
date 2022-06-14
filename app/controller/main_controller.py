@@ -1,6 +1,8 @@
 import sys
+import webbrowser
 from app.controller.create_contact_controller import CreateContactController
 from app.controller.delete_contact_controller import DeleteContactController
+from app.google_drive_wrapper_interface import GoogleDriveWrapperInterface
 from app.view.frames.delete_contact_frame import DeleteContactFrame
 from app.view.frames.create_contact_frame import CreateContactFrame
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
@@ -17,11 +19,13 @@ class MainController:
                  main_window,
                  google_sheets_wrapper: GoogleSheetsWrapperInterface,
                  google_contacts_wrapper: GoogleContactsWrapperInterface,
+                 google_drive_wrapper_interface: GoogleDriveWrapperInterface,
                  folder_manager: FolderManager
                  ):
         self.main_window = main_window
         self.google_sheets_wrapper = google_sheets_wrapper
         self.google_contacts_wrapper = google_contacts_wrapper
+        self.google_drive_wrapper_interface = google_drive_wrapper_interface
         self.folder_manager = folder_manager
 
     def create_contact(self, name: str, phone: str) -> bool:
@@ -38,7 +42,7 @@ class MainController:
             self.main_window.show_error("Please fill all the fields")
             return
 
-        contact_dir = self.folder_manager.create_contact_folder(name)
+        # contact_dir = self.folder_manager.create_contact_folder(name)
 
         # Google Sheet Customer Database list: add the customer
         try:
@@ -65,9 +69,23 @@ class MainController:
             return False
 
         # opening the directory in finder
-        self.folder_manager.open_directory(contact_dir)
+        # self.folder_manager.open_directory(contact_dir)
 
-        self.main_window.show_info("Contact Created Successfully")
+        # Google Drive Create Folder
+        try:
+            drive_folder_url = self.google_drive_wrapper_interface.create_folder(
+                name)
+        except BaseException as err:
+            logger.error('failed creating drive directory for contact')
+            ex_type, ex_value, ex_traceback = sys.exc_info()
+            self.main_window.show_error(ex_value)
+            return False
+
+        # self.main_window.show_info("Contact Created Successfully")
+
+        # Open the url in the browser
+        webbrowser.open(drive_folder_url)
+
         return True
 
     def delete_contact(self, name: str) -> bool:
@@ -106,8 +124,18 @@ class MainController:
             self.main_window.show_error(ex_value)
             ran_ok = False
 
+        # Google Drive Delete Folder
+        try:
+            self.google_drive_wrapper_interface.delete_folders_by_name(name)
+        except BaseException as err:
+            logger.error('failed deleting drive directory for contact')
+            ex_type, ex_value, ex_traceback = sys.exc_info()
+            logger.error(ex_traceback)
+            self.main_window.show_error(ex_value)
+            return False
+
         # Sending it to the trash (not completely remove)
-        self.folder_manager.delete_contact_folder(name)
+        # self.folder_manager.delete_contact_folder(name)
 
         if ran_ok:
             self.main_window.show_info("Contact Deleted Successfully")

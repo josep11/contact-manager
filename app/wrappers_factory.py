@@ -1,6 +1,7 @@
 import sys
 from app.app_config import AppConfig
 from app.google_contacts_wrapper import GoogleContactsWrapper
+from app.google_drive_wrapper import GoogleDriveWrapper
 from app.google_sheets_wrapper import GoogleSheetsWrapper
 
 try:
@@ -25,6 +26,8 @@ try:
         credentials, AppConfig.SPREADSHEET_ID)
 
     google_contacts_wrapper = GoogleContactsWrapper(credentials)
+
+    google_drive_wrapper = GoogleDriveWrapper(credentials, AppConfig.GOOGLE_DRIVE_ROOT_PROJECT_DIR_ID)
 
 except Exception as e:
     logger.error(e, exc_info=True)

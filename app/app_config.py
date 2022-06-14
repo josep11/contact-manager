@@ -40,11 +40,16 @@ if not SPREADSHEET_ID:
 class AppConfig:
     PROJECTS_ROOTDIR = PROJECTS_ROOTDIR
 
+    # If modifying these scopes, delete the file token.json.
     SCOPES = [
         'https://www.googleapis.com/auth/contacts',
         'https://www.googleapis.com/auth/spreadsheets',
+        'https://www.googleapis.com/auth/drive'
     ]
+
     APP_NAME = "ContactManager"
     SPREADSHEET_ID = SPREADSHEET_ID
+
+    GOOGLE_DRIVE_ROOT_PROJECT_DIR_ID = "1uZNaMYudSyY9m0miNrhKUnnYjWh7xz1_"
 
     isDev = isDev
