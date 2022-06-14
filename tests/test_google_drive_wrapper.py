@@ -27,4 +27,4 @@ class GoogleDriveWrapperTest(unittest.TestCase):
     #     google_drive_wrapper.delete_file_by_name(contact_name)
 
     def tearDown(self):
-        google_drive_wrapper.delete_file_by_name(contact_name)
+        google_drive_wrapper.delete_folders_by_name(contact_name)

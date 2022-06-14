@@ -25,6 +25,7 @@ folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
 if __name__ == "__main__":
     name = args.name
 
+
     # Google Contacts Delete
     try:
         google_contacts_wrapper.delete_contact_google_contacts(name)
@@ -48,6 +49,8 @@ if __name__ == "__main__":
     except BaseException as err:
         eprint(err)
         exit(1)
+    
+    # TODO: use drive wrapper
 
     # Sending it to the trash (not completely remove)
     folder_manager.delete_contact_folder(name)

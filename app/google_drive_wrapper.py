@@ -35,15 +35,6 @@ class GoogleDriveWrapper(GoogleDriveWrapperInterface):
     # ---------------------
 
     def create_folder(self, contact_name: str) -> str:
-        """Creates a folder in Google Drive with `contact_name`, 
-        creates a scaffolding project directory under it and makes it public to read and returns the public URL
-
-        Args:
-            contact_name (str): the contact name that will give name to the internal folder
-
-        Returns:
-            str: the public URL
-        """
         # TODO: should search if the contact already exists (or it creates duplicated folders)
 
         file_metadata = {
@@ -77,7 +68,25 @@ class GoogleDriveWrapper(GoogleDriveWrapperInterface):
 
         return self.get_folder_url(project_folder_id)
 
-    def get_file_ids_by_name(self, file_name: str) -> list:
+    def get_file_ids_by_name(self, file_name: str, mime_type: str) -> list:
+        """Gets the files by exact name and returns the ids
+
+        Args:
+            file_name (str): 
+            mime_type (str):
+
+        Returns:
+            list: the array of ids
+        """
+        page_token = None
+        response = self.service.files().list(q=f"mimeType='{mime_type}' and name='{file_name}'",
+                                             spaces='drive',
+                                             fields='nextPageToken, files(id, name)',
+                                             pageToken=page_token).execute()
+
+        return response.get('files', [])
+
+    def get_folder_ids_by_name(self, file_name: str) -> list:
         """Gets the files by exact name and returns the ids
 
         Args:
@@ -86,13 +95,7 @@ class GoogleDriveWrapper(GoogleDriveWrapperInterface):
         Returns:
             list: the array of ids
         """
-        page_token = None
-        response = self.service.files().list(q=f"mimeType='application/vnd.google-apps.folder' and name='{file_name}'",
-                                             spaces='drive',
-                                             fields='nextPageToken, files(id, name)',
-                                             pageToken=page_token).execute()
-
-        return response.get('files', [])
+        return self.get_file_ids_by_name(file_name=file_name, mime_type="application/vnd.google-apps.folder")
 
     def delete_file(self, file_id: str):
         try:
@@ -101,9 +104,9 @@ class GoogleDriveWrapper(GoogleDriveWrapperInterface):
         except errors.HttpError as error:
             print('An error occurred: %s' % error)
 
-    def delete_file_by_name(self, file_name: str):
+    def delete_folders_by_name(self, file_name: str):
         # The list is non exhaustive as it picks only the first page
         # https://developers.google.com/drive/api/guides/search-files
-        for file in self.get_file_ids_by_name(file_name):
-            print('Found file: %s (%s)' % (file.get('name'), file.get('id')))
+        for file in self.get_folder_ids_by_name(file_name):
+            print('Found folder: %s (%s)' % (file.get('name'), file.get('id')))
             self.delete_file(file.get('id'))
