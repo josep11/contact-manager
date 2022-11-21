@@ -27,6 +27,7 @@ class CreateContactFrame(tk.Frame):
     def clear_entries(self):
         self.nom.delete(0, tk.END)
         self.telefon.delete(0, tk.END)
+        # TODO: Telegram user
 
     def switch_to_delete_frame(self):
         self.controller.switch_to_delete_frame()
@@ -46,6 +47,9 @@ class CreateContactFrame(tk.Frame):
 
         self.telefon = ttk.Entry(self)
         self.telefon.grid(column=1, row=1, sticky=tk.E, padx=5, pady=5)
+
+        # TODO: telegram user
+        
 
         if AppConfig.isDev:
             self.nom.insert(0, "Carlos S.L.")
