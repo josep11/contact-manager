@@ -1,9 +1,17 @@
 import logging
+import os
+import subprocess
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-log_filename = f"/tmp/contactmanager.log"
-logging.basicConfig(filename=log_filename,
+
+LOGS_DIRECTORY = os.getenv('LOGS_DIRECTORY')
+if not LOGS_DIRECTORY:
+    print('no environment was found ')
+    subprocess.call(["touch", "contact_manager_error.txt"])
+    exit(1)
+
+logging.basicConfig(filename=LOGS_DIRECTORY,
                     encoding="utf-8", level=logging.DEBUG)
 
 

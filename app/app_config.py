@@ -25,17 +25,23 @@ if "dev" == ENV:
     load_dotenv(".env.dev", override=True)
     isDev = ENV == "dev"
 
+def die(msg: str):
+    logger.critical(msg)
+    exit(1)
+
 PROJECTS_ROOTDIR = os.getenv("PROJECTS_ROOTDIR")
 if not PROJECTS_ROOTDIR:
-    logger.critical(fg.red + "Error: environments not set!" + fg.rs)
-    exit(1)
+    die(fg.red + "Error: environments not set!" + fg.rs)
 
 SPREADSHEET_ID = os.getenv('SPREADSHEET_ID')
 if not SPREADSHEET_ID:
-    logger.critical(
+    die(
         fg.red + "Error: environments SPREADSHEET_ID not set!" + fg.rs)
-    exit(1)
 
+LOGS_DIRECTORY = os.getenv('LOGS_DIRECTORY')
+if not LOGS_DIRECTORY:
+    die(
+        fg.red + "Error: environments LOGS_DIRECTORY not set!" + fg.rs)
 
 class AppConfig:
     PROJECTS_ROOTDIR = PROJECTS_ROOTDIR
@@ -53,3 +59,5 @@ class AppConfig:
     GOOGLE_DRIVE_ROOT_PROJECT_DIR_ID = "1uZNaMYudSyY9m0miNrhKUnnYjWh7xz1_"
 
     isDev = isDev
+
+    LOGS_DIRECTORY = LOGS_DIRECTORY
