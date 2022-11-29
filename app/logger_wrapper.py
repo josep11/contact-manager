@@ -1,4 +1,5 @@
 import logging
+from sys import exit
 import os
 import subprocess
 
@@ -7,8 +8,9 @@ logger.setLevel(logging.INFO)
 
 LOGS_DIRECTORY = os.getenv('LOGS_DIRECTORY')
 if not LOGS_DIRECTORY:
-    print('no environment was found ')
-    subprocess.call(["touch", "contact_manager_error.txt"])
+    homedir=os.path.expanduser('~')
+    print('no environment was found with LOGS_DIRECTORY')
+    subprocess.call(["touch", os.path.join(homedir, 'Desktop', "contact_manager_error.txt")])
     exit(1)
 
 logging.basicConfig(filename=LOGS_DIRECTORY,

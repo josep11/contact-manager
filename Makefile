@@ -19,6 +19,15 @@ help:
 logs-tail:
 	@sh ./tail-logs.sh
 
+## Build
+build:
+	$(shell ./build.zsh)
+
+## Build and deploy
+build-and-deploy:
+	$(shell ./build_and_deploy.zsh)
+# @sh ./build_and_deploy.sh
+
 ## Cleans up already merged branches
 git/clean:
 	git fetch origin --prune
