@@ -1,11 +1,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 import tkinter.messagebox
-from turtle import bgcolor
 from app.app_config import AppConfig
 
-from app.controller.main_controller import MainController
-from app.view.frames.create_contact_frame import CreateContactFrame
 
 from app.view.styles import *
 
@@ -25,7 +22,7 @@ class MainWindow(tk.Tk):
                     # font=('Helvetica', 12, 'bold'),
                     background=BACKGROUND_COLOR,
                     )
-        s.configure('TButton', foreground=TEXT_COLOR )
+        s.configure('TButton', foreground=TEXT_COLOR)
 
         # https://tkdocs.com/tutorial/styles.html
         # https://docs.python.org/es/3.10/library/tkinter.ttk.html
@@ -35,13 +32,12 @@ class MainWindow(tk.Tk):
         # s.configure('JS.TButton',
         #             # font=('Helvetica', 12),
         #             overrelief=tk.RIDGE,
-        #             foreground='black', 
+        #             foreground='black',
         #             background='blue',
         #             # foreground=COMPONENT_COLOR
         #             )
 
-
-    def set_controller(self, controller: MainController):
+    def set_controller(self, controller):
         self.controller = controller
         if self.container:
             self.container.set_controller(controller)
