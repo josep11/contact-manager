@@ -3,14 +3,11 @@ from sty import fg  # , bg, ef, rs
 from sys import exit
 
 from dotenv import load_dotenv
-from app.utils import get_bundle_dir
+from app.utils import get_env_file_path
 
-from os import path
+load_dotenv(get_env_file_path())
 
 from app.logger_wrapper import logger
-
-path_to_env = path.abspath(path.join(get_bundle_dir(), '.env'))
-load_dotenv(path_to_env)
 
 ENV = os.getenv('ENV')
 
@@ -25,9 +22,11 @@ if "dev" == ENV:
     load_dotenv(".env.dev", override=True)
     isDev = ENV == "dev"
 
+
 def die(msg: str):
     logger.critical(msg)
     exit(1)
+
 
 PROJECTS_ROOTDIR = os.getenv("PROJECTS_ROOTDIR")
 if not PROJECTS_ROOTDIR:
@@ -42,6 +41,7 @@ LOGS_DIRECTORY = os.getenv('LOGS_DIRECTORY')
 if not LOGS_DIRECTORY:
     die(
         fg.red + "Error: environments LOGS_DIRECTORY not set!" + fg.rs)
+
 
 class AppConfig:
     PROJECTS_ROOTDIR = PROJECTS_ROOTDIR

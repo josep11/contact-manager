@@ -2,6 +2,10 @@ import logging
 from sys import exit
 import os
 import subprocess
+from dotenv import load_dotenv
+from app.utils import get_env_file_path
+
+load_dotenv(get_env_file_path())
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)

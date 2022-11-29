@@ -1,4 +1,5 @@
 import os
+from os import path
 from random import randint
 import re
 import sys
@@ -11,6 +12,11 @@ PHONE_COUNTRY_CODE = "+34"
 
 regex_phone_with_country_code = r"^\+(?:[0-9]●?){6,14}[0-9]$"
 regex_phone = r"^(?:[0-9]●?){9}$"
+
+
+def get_env_file_path() -> str:
+    path_to_env = path.abspath(path.join(get_bundle_dir(), '.env'))
+    return path_to_env
 
 
 def get_bundle_dir() -> str:
