@@ -37,7 +37,7 @@ fi
 
 # trying to set the python library path for pyinstaller to know where it is in order to bundle it
 export DYLD_LIBRARY_PATH=$(which python)
-
+echo hola
 python -m PyInstaller --noconfirm --log-level=WARN \
     --clean --onefile -w \
     --osx-bundle-identifier=$BUNDLE_IDENTIFIER \

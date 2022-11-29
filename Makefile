@@ -19,14 +19,21 @@ help:
 logs-tail:
 	@sh ./tail-logs.sh
 
+## Tail the logs
+tail-logs: logs-tail
+
 ## Build
 build:
 	$(shell ./build.zsh)
 
+## Build and run
+build-and-run:
+	@echo ./build_and_run.zsh
+# $(shell ./build_and_run.zsh)
+
 ## Build and deploy
 build-and-deploy:
 	$(shell ./build_and_deploy.zsh)
-# @sh ./build_and_deploy.sh
 
 ## Cleans up already merged branches
 git/clean:
