@@ -48,12 +48,17 @@ class CreateContactFrame(tk.Frame):
         self.telefon = ttk.Entry(self)
         self.telefon.grid(column=1, row=1, sticky=tk.E, padx=5, pady=5)
 
-        # TODO: telegram user
-        
+        # extra
+        self.extra_label = ttk.Label(self, text="Extra Info:")
+        self.extra_label.grid(column=0, row=2, sticky=tk.W, padx=5, pady=5)
+
+        self.extra = ttk.Entry(self)
+        self.extra.grid(column=1, row=2, sticky=tk.E, padx=5, pady=5)
 
         if AppConfig.isDev:
             self.nom.insert(0, "Carlos S.L.")
             self.telefon.insert(0, f"+34 {random_with_N_digits()}")
+            self.extra.insert(0, f"@randomTelegramUser")
 
         # login button
         create_contact_button = ttk.Button(
