@@ -57,7 +57,10 @@ class MainController:
         # Google Contacts
         try:
             self.google_contacts_wrapper.create_contact_google_contacts(
-                name, phone)
+                name,
+                phone,
+                extra,
+                )
         except ContactAlreadyExistException as err:
             msg = err.args
             self.main_window.show_error(msg)
