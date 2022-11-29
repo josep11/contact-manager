@@ -7,7 +7,7 @@ class GoogleContactsWrapperInterface(metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def create_contact_google_contacts(self, name: str, phone: str):
+    def create_contact_google_contacts(self, name: str, phone: str, extra: str = None):
         pass
 
     @abc.abstractmethod

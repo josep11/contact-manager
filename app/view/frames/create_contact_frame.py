@@ -21,13 +21,17 @@ class CreateContactFrame(tk.Frame):
         self.controller = controller
 
     def created_button_pressed(self):
-        if self.controller.create_contact(self.nom.get(), self.telefon.get()):
+        if self.controller.create_contact(
+                self.nom.get(),
+                self.telefon.get(),
+                self.extra.get()
+        ):
             self.clear_entries()
 
     def clear_entries(self):
         self.nom.delete(0, tk.END)
         self.telefon.delete(0, tk.END)
-        # TODO: Telegram user
+        self.extra.delete(0, tk.END)
 
     def switch_to_delete_frame(self):
         self.controller.switch_to_delete_frame()
