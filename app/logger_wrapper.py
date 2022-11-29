@@ -1,9 +1,23 @@
 import logging
+from sys import exit
+import os
+import subprocess
+from dotenv import load_dotenv
+from app.utils import get_env_file_path
+
+load_dotenv(get_env_file_path())
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-log_filename = f"/tmp/contactmanager.log"
-logging.basicConfig(filename=log_filename,
+
+LOGS_DIRECTORY = os.getenv('LOGS_DIRECTORY')
+if not LOGS_DIRECTORY:
+    homedir=os.path.expanduser('~')
+    print('no environment was found with LOGS_DIRECTORY')
+    subprocess.call(["touch", os.path.join(homedir, 'Desktop', "contact_manager_error.txt")])
+    exit(1)
+
+logging.basicConfig(filename=LOGS_DIRECTORY,
                     encoding="utf-8", level=logging.DEBUG)
 
 

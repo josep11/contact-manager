@@ -16,14 +16,15 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
     def get_contact_by_query(self, query) -> list:
         # first we should warm un the cache
         # GET /v1/people:searchContacts?query=&readMask=names,emailAddresses HTTP/1.1
+        fields="names,emailAddresses,clientData,userDefined,metadata,biographies"
         self.service.people().searchContacts(
-            query="", readMask="names,emailAddresses").execute()
+            query="", readMask=fields).execute()
 
         # There is a bug in the self.service and it takes some 30 seconds to be able to find a newly added contact
 
         # The query will match everything that starts with that query but not middle parts
         results = self.service.people().searchContacts(
-            pageSize=10, query=query, readMask="names").execute()
+            pageSize=10, query=query, readMask=fields).execute()
 
         if not results:
             return None
@@ -32,7 +33,7 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
         print(f'trobats {len(resultsArr)} amb nom exacte {query}')
         return resultsArr
 
-    def _create_contact(self, name: str, phone: str):
+    def _create_contact(self, name: str, phone: str, extra: str = None):
         print(f"About to create {name} with phone {phone}")
 
         self.service.people().createContact(body={
@@ -46,11 +47,11 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
                     'value': phone
                 }
             ],
-            # "biographies": [
-            #     {
-            #         "value": "Created automatically by Contacts Manager",
-            #     }
-            # ]
+            "biographies": [
+                {
+                    'value': extra or ''
+                }
+            ]
             # "emailAddresses": [
             #     {
             #         'value': 'myemail@gmail.com'
@@ -58,7 +59,7 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
             # ]
         }).execute()
 
-    def create_contact_google_contacts(self, name: str, phone: str):
+    def create_contact_google_contacts(self, name: str, phone: str, extra: str = None):
         name = transform_name(name)
         phone = transform_phone(phone)
 
@@ -67,7 +68,7 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
             raise ContactAlreadyExistException(
                 f'Error: contact with name "{name}" already exists')
 
-        self._create_contact(name, phone)
+        self._create_contact(name, phone, extra)
         print(f"Created contact {name} with phone {phone}")
         # except BaseException as err:
         #     msg = err.args

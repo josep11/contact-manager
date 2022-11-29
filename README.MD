@@ -108,7 +108,7 @@ Make sure that the .env file includes all variables like in `.env.example`.
 Make sure that the shebang on all the `./*.sh` is the same as your default shell. To get it: `echo $SHELL`. Then
 
 ```bash
-./build.sh && source .env && open dist/$APP_NAME.app
+./build.zsh && source .env && open dist/$APP_NAME.app
 ```
 
 ## Deployment

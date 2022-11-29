@@ -27,6 +27,7 @@ folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
 if __name__ == "__main__":
     name = args.name
     phone = args.phone
+    extra = args.extra or None
 
     # TODO: use drive wrapper
     contact_dir = folder_manager.create_contact_folder(name)
@@ -34,7 +35,10 @@ if __name__ == "__main__":
     # Google Contacts
     try:
         google_contacts_wrapper.create_contact_google_contacts(
-            name, phone)
+            name,
+            phone,
+            extra,
+        )
     except ContactAlreadyExistException as err:
         msg = err.args
         eprint(fg.red + msg[0] + fg.rs)

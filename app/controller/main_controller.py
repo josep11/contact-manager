@@ -28,18 +28,19 @@ class MainController:
         self.google_drive_wrapper_interface = google_drive_wrapper_interface
         self.folder_manager = folder_manager
 
-    def create_contact(self, name: str, phone: str) -> bool:
+    def create_contact(self, name: str, phone: str, extra: str = None) -> bool:
         """creates a contact
 
         Args:
             name (str):
             phone (str):
+            extra (str):
 
         Returns:
             bool: True if successful
         """
         if not name or not phone:
-            self.main_window.show_error("Please fill all the fields")
+            self.main_window.show_error("Please fill the required fields (name and phone)")
             return
 
         # contact_dir = self.folder_manager.create_contact_folder(name)
@@ -56,7 +57,10 @@ class MainController:
         # Google Contacts
         try:
             self.google_contacts_wrapper.create_contact_google_contacts(
-                name, phone)
+                name,
+                phone,
+                extra,
+                )
         except ContactAlreadyExistException as err:
             msg = err.args
             self.main_window.show_error(msg)
