@@ -33,7 +33,7 @@ build-and-run:
 
 ## Build and deploy
 build-and-deploy:
-	$(shell ./build_and_deploy.zsh)
+	@echo ./build_and_deploy.zsh
 
 ## Cleans up already merged branches
 git/clean:
