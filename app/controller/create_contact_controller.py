@@ -1,13 +1,9 @@
 # from app.view.main_window import MainWindow
 
-
-from app.controller.main_controller import MainController
-
-
 class CreateContactController:
     def __init__(self,
                  main_window,
-                 main_controller: MainController
+                 main_controller
                  #  google_sheets_wrapper: GoogleSheetsWrapperInterface,
                  #  google_contacts_wrapper: GoogleContactsWrapperInterface,
                  #  folder_manager: FolderManager
