@@ -53,7 +53,7 @@ class AppConfig:
         'https://www.googleapis.com/auth/drive'
     ]
 
-    APP_NAME = "ContactManager"
+    APP_NAME = os.getenv('APP_NAME')
     SPREADSHEET_ID = SPREADSHEET_ID
 
     GOOGLE_DRIVE_ROOT_PROJECT_DIR_ID = "1uZNaMYudSyY9m0miNrhKUnnYjWh7xz1_"
