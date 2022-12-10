@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-import tkinter.messagebox
+from tkinter import Menu, messagebox
+from app import get_version
 from app.app_config import AppConfig
 
 
@@ -10,6 +11,7 @@ from app.logger_wrapper import logger
 
 
 class MainWindow(tk.Tk):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title("Contact Manager")
@@ -29,13 +31,20 @@ class MainWindow(tk.Tk):
 
         # ('aqua', 'clam', 'alt', 'default', 'classic')
         s.theme_use('clam')
-        # s.configure('JS.TButton',
-        #             # font=('Helvetica', 12),
-        #             overrelief=tk.RIDGE,
-        #             foreground='black',
-        #             background='blue',
-        #             # foreground=COMPONENT_COLOR
-        #             )
+
+        menubar = Menu(self)
+        # Adding Help Menu
+        self.create_help_submenu(menubar, get_version())
+        # Adding to the view
+        self.config(menu=menubar)
+
+    def create_help_submenu(self, menubar: tk.Menu, version: str) -> tk.Menu:
+        help_ = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Help", menu=help_)
+        about_info = f"{AppConfig.APP_NAME} v{version}"
+        # messagebox.showinfo("Versió", about_info)
+        help_.add_command(label="About", command=lambda: messagebox.showinfo(
+            "Versió", about_info))
 
     def set_controller(self, controller):
         self.controller = controller
@@ -46,10 +55,10 @@ class MainWindow(tk.Tk):
                 f"should have container initialised before calling set_controller")
 
     def show_error(self, msg: str):
-        tkinter.messagebox.showerror(title=AppConfig.APP_NAME, message=msg)
+        messagebox.showerror(title=AppConfig.APP_NAME, message=msg)
 
     def show_info(self, msg: str):
-        tkinter.messagebox.showinfo(title=AppConfig.APP_NAME, message=msg)
+        messagebox.showinfo(title=AppConfig.APP_NAME, message=msg)
 
     def switch_view(self, frame_class):
         """Destroys current frame and replaces it with a new one."""
