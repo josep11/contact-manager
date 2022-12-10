@@ -1,5 +1,5 @@
 # dummy file
-__version__ = '2.1.0-beta'
+__version__ = '2.1.1'
 
 
 def get_version():
