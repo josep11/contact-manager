@@ -38,3 +38,11 @@ build-and-deploy:
 ## Cleans up already merged branches
 git/clean:
 	git fetch origin --prune
+
+## Pip list outdated packages
+pip/list-outdated:
+	pip list --outdated
+
+## Pip check for newer versions of dependencies
+pip/check:
+	pip-check
