@@ -14,7 +14,6 @@ class GoogleSheetsWrapperTest(unittest.TestCase):
         super(GoogleSheetsWrapperTest, self).__init__(*args, **kwargs)
 
     def test_get_contact_by_query(self):
-
         res = google_contacts_wrapper.get_contact_by_query("Jorge")
         # res = google_contacts_wrapper.get_contact_by_query("Fl AA_DUMMY_TEST_CONTACT735944")
         self.assertGreaterEqual(len(res), 1)
@@ -34,9 +33,13 @@ class GoogleSheetsWrapperTest(unittest.TestCase):
             extra,
         )
 
+        # TODO: this test is not working for some reason even though the contact
+        # is created correctly it cannot find it after
         time.sleep(30)
 
+        print(f'before getting contact by name {name}')
         res = google_contacts_wrapper.get_contact_by_query(name)
+
         self.assertIsNotNone(res, f'contact with name {name} not found')
         self.assertGreaterEqual(len(res), 1)
         # check biography
@@ -50,8 +53,10 @@ class GoogleSheetsWrapperTest(unittest.TestCase):
         # clean up
 
     def tearDown(self):
-        print('\nCleaning up %s contacts\n' % len(self.names_of_contacts_created))
+        print('\nCleaning up %s contacts\n' %
+              len(self.names_of_contacts_created))
+
         for name in self.names_of_contacts_created:
-            logger.info("cleaning up contact with name {name}")
+            print(f"cleaning up contact with name {name}")
             # delete the record from contacts api
             google_contacts_wrapper.delete_contact_google_contacts(name)

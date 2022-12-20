@@ -30,7 +30,9 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
             return None
 
         resultsArr = results['results']
+        
         print(f'trobats {len(resultsArr)} amb nom exacte {query}')
+        
         return resultsArr
 
     def _create_contact(self, name: str, phone: str, extra: str = None):
