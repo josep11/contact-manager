@@ -1,5 +1,6 @@
 import tkinter as tk
 import tkinter.ttk as ttk
+from app.view.frames.frame_constants import DummyContact
 
 from app.view.styles import *
 from app.app_config import AppConfig
@@ -38,7 +39,7 @@ class DeleteContactFrame(tk.Frame):
         self.nom.grid(column=1, row=0, sticky=tk.E, padx=5, pady=5)
 
         if AppConfig.isDev:
-            self.nom.insert(0, "Carlos S.L.")
+            self.nom.insert(0, DummyContact.name)
 
         # login button
         create_contact_button = ttk.Button(

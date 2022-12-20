@@ -1,4 +1,6 @@
 
+default: help
+
 ## Help
 help:
 	@printf "Available targets:\n\n"
@@ -14,6 +16,8 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST) | sort -u
 	@printf "\n"
+
+include .make/*.mk
 
 ## Tail the logs
 logs-tail:
@@ -45,4 +49,12 @@ pip/list-outdated:
 
 ## Pip check for newer versions of dependencies
 pip/check:
-	pip-check
+	pip-check -u -H
+
+## Pip freeze dependencies into requirements.txt
+pip/freeze:
+	pip freeze > requirements.txt
+
+## Run unit tests
+test:
+	python -m unittest discover
