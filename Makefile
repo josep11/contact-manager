@@ -55,6 +55,10 @@ pip/check:
 pip/freeze:
 	pip freeze > requirements.txt
 
+## Pip install dependencies from requirements.txt
+pip/install:
+	pip install -r requirements.txt
+
 ## Run unit tests
 test:
 	python -m unittest discover
