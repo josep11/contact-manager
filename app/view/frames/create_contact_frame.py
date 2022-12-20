@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 # from app.controller.main_controller import MainController
 from app.utils import random_with_N_digits
+from app.view.frames.frame_constants import DummyContact
 
 from app.view.styles import *
 from app.app_config import AppConfig
@@ -60,9 +61,9 @@ class CreateContactFrame(tk.Frame):
         self.extra.grid(column=1, row=2, sticky=tk.E, padx=5, pady=5)
 
         if AppConfig.isDev:
-            self.nom.insert(0, "Carlos S.L.")
-            self.telefon.insert(0, f"+34 {random_with_N_digits()}")
-            self.extra.insert(0, f"@randomTelegramUser")
+            self.nom.insert(0, DummyContact.name)
+            self.telefon.insert(0, DummyContact.phone)
+            self.extra.insert(0, DummyContact.extra)
 
         # login button
         create_contact_button = ttk.Button(
