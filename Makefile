@@ -47,3 +47,10 @@ pip/list-outdated:
 pip/check:
 	pip-check -u -H
 
+## Pip freeze dependencies into requirements.txt
+pip/freeze:
+	pip freeze > requirements.txt
+
+## Run unit tests
+test:
+	python -m unittest discover
