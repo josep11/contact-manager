@@ -45,4 +45,5 @@ pip/list-outdated:
 
 ## Pip check for newer versions of dependencies
 pip/check:
-	pip-check
+	pip-check -u -H
+
