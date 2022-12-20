@@ -1,4 +1,6 @@
 
+default: help
+
 ## Help
 help:
 	@printf "Available targets:\n\n"
@@ -14,6 +16,8 @@ help:
 	} \
 	{ lastLine = $$0 }' $(MAKEFILE_LIST) | sort -u
 	@printf "\n"
+
+include .make/*.mk
 
 ## Tail the logs
 logs-tail:
