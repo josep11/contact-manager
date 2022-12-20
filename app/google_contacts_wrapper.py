@@ -69,7 +69,8 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
                 f'Error: contact with name "{name}" already exists')
 
         self._create_contact(name, phone, extra)
-        print(f"Created contact {name} with phone {phone}")
+
+        print(f"\nCreated contact {name} with phone {phone}\n")
         # except BaseException as err:
         #     msg = err.args
         #     eprint(msg)
@@ -84,6 +85,6 @@ class GoogleContactsWrapper(GoogleContactsWrapperInterface):
 
         resourceName = contact[0]['person']['resourceName']
 
-        print(f'deleting {resourceName} from Google Contacts')
+        print(f'\ndeleting {resourceName} from Google Contacts\n')
 
         self.service.people().deleteContact(resourceName=resourceName).execute()

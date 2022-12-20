@@ -28,7 +28,7 @@ class GoogleSheetsWrapperTest(unittest.TestCase):
 
         self.names_of_contacts_created.append(name)
 
-        res = google_contacts_wrapper.create_contact_google_contacts(
+        google_contacts_wrapper.create_contact_google_contacts(
             name,
             phone,
             extra,
@@ -50,6 +50,7 @@ class GoogleSheetsWrapperTest(unittest.TestCase):
         # clean up
 
     def tearDown(self):
+        print('\nCleaning up %s contacts\n', len(self.names_of_contacts_created))
         for name in self.names_of_contacts_created:
             logger.info("cleaning up contact with name {name}")
             # delete the record from contacts api
