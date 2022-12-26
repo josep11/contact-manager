@@ -1,4 +1,4 @@
-altgraph==0.17.2
+altgraph==0.17.3
 autoflake==1.4
 autopep8==1.6.0
 cachetools==5.1.0
