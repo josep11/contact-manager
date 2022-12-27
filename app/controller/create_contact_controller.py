@@ -6,7 +6,6 @@ class CreateContactController:
                  main_controller
                  #  google_sheets_wrapper: GoogleSheetsWrapperInterface,
                  #  google_contacts_wrapper: GoogleContactsWrapperInterface,
-                 #  folder_manager: FolderManager
                  ):
         self.main_window = main_window
         self.main_controller = main_controller

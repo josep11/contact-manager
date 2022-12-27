@@ -6,7 +6,6 @@ from app.google_drive_wrapper_interface import GoogleDriveWrapperInterface
 from app.view.frames.delete_contact_frame import DeleteContactFrame
 from app.view.frames.create_contact_frame import CreateContactFrame
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
-from app.folder_manager import FolderManager
 from app.google_contacts_wrapper_interface import GoogleContactsWrapperInterface
 from app.google_sheets_wrapper_interface import GoogleSheetsWrapperInterface
 # from app.view.main_window import MainWindow
@@ -19,14 +18,12 @@ class MainController:
                  main_window,
                  google_sheets_wrapper: GoogleSheetsWrapperInterface,
                  google_contacts_wrapper: GoogleContactsWrapperInterface,
-                 google_drive_wrapper_interface: GoogleDriveWrapperInterface,
-                 folder_manager: FolderManager
+                 google_drive_wrapper_interface: GoogleDriveWrapperInterface
                  ):
         self.main_window = main_window
         self.google_sheets_wrapper = google_sheets_wrapper
         self.google_contacts_wrapper = google_contacts_wrapper
         self.google_drive_wrapper_interface = google_drive_wrapper_interface
-        self.folder_manager = folder_manager
 
     def create_contact(self, name: str, phone: str, extra: str = None) -> bool:
         """creates a contact
