@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-from app.folder_manager import FolderManager
 from app.utils import eprint
 from app.exceptions import ContactAlreadyExistException
 import argparse
@@ -22,15 +21,10 @@ except ImportError:
     args = None
 
 
-folder_manager = FolderManager(AppConfig.PROJECTS_ROOTDIR)
-
 if __name__ == "__main__":
     name = args.name
     phone = args.phone
     extra = args.extra or None
-
-    # TODO: use drive wrapper
-    contact_dir = folder_manager.create_contact_folder(name)
 
     # Google Contacts
     try:
@@ -50,6 +44,3 @@ if __name__ == "__main__":
     # Google Sheet Customer Database list: add the customer
     rows = google_sheets_wrapper.get_rows()
     google_sheets_wrapper.add_customer(rows, name)
-
-    # opening the directory in finder
-    folder_manager.open_directory(contact_dir)
