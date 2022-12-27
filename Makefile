@@ -59,6 +59,19 @@ pip/reqs:
 pip/install:
 	pip install -r requirements.txt
 
+## Pip install dev dependencies
+pip/install-dev:
+	pip install -r requirements_dev.txt
+
 ## Run unit tests
 test:
-	python -m unittest discover
+	pytest -q
+
+_check-requirement:
+	@${COMMAND} --version >/dev/null 2>&1 || (echo "ERROR: ${COMMAND} is required."; exit 1)
+
+## Ensures that the the requirements for dev are installed
+.PHONY: _ensure-requirements-dev
+_ensure-requirements-dev:
+	@pytest --version >/dev/null 2>&1 || (echo "ERROR: pytest is required. Please run make pip/install-dev"; exit 1)
+
