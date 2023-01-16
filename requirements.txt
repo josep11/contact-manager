@@ -1,5 +1,5 @@
 google_api_python_client==2.70.0
 google_oauth_wrapper==1.0.1
 python-dotenv==0.21.0
-requests==2.27.1
+requests==2.28.2
 sty==1.0.4
