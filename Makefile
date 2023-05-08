@@ -12,16 +12,15 @@ tail-logs: logs-tail
 
 ## Build
 build:
-	$(shell ./build.zsh)
+	./build.zsh
 
 ## Build and run
 build-and-run:
-	@echo ./build_and_run.zsh
-# $(shell ./build_and_run.zsh)
+	./build_and_run.zsh
 
 ## Build and deploy
 build-and-deploy:
-	@echo ./build_and_deploy.zsh
+	./build_and_deploy.zsh
 
 ## Cleans up already merged branches
 git/clean:
