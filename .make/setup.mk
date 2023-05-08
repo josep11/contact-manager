@@ -1,4 +1,4 @@
-## Pip freeze package dependencies
+## Pip freeze dependencies
 pip/freeze:
 	pip freeze > requirements.txt
 
