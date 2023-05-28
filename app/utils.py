@@ -113,5 +113,9 @@ def open_brave(url: str):
         raise Exception("Brave browser is not found at this path:" + app_path)
 
 
-def open_browser(url: str):
-    open_brave(url)
+def open_browser(url: str, browser: str):
+    if browser == 'brave':
+        open_brave(url)
+        return
+
+    open_default_browser(url)

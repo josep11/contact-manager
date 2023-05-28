@@ -9,6 +9,7 @@ from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistExce
 from app.google_contacts_wrapper_interface import GoogleContactsWrapperInterface
 from app.google_sheets_wrapper_interface import GoogleSheetsWrapperInterface
 # from app.view.main_window import MainWindow
+from app.app_config import AppConfig
 
 from app.logger_wrapper import logger
 
@@ -85,7 +86,7 @@ class MainController:
 
         # self.main_window.show_info("Contact Created Successfully")
 
-        open_browser(drive_folder_url)
+        open_browser(drive_folder_url, AppConfig.DEFAULT_BROWSER)
         return True
 
     def delete_contact(self, name: str) -> bool:

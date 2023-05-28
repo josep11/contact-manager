@@ -41,7 +41,7 @@ class IndexText(unittest.TestCase):
 
     def test_open_browser(self):
         url = "https://docs.google.com/"
-        open_browser(url)
+        open_browser(url, 'brave')
 
 
 if __name__ == "__main__":
