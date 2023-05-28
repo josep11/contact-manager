@@ -1,14 +1,15 @@
 import sys
-import webbrowser
 from app.controller.create_contact_controller import CreateContactController
 from app.controller.delete_contact_controller import DeleteContactController
 from app.google_drive_wrapper_interface import GoogleDriveWrapperInterface
+from app.utils import open_browser
 from app.view.frames.delete_contact_frame import DeleteContactFrame
 from app.view.frames.create_contact_frame import CreateContactFrame
 from app.exceptions import ContactAlreadyExistException, ContactDoesNotExistException
 from app.google_contacts_wrapper_interface import GoogleContactsWrapperInterface
 from app.google_sheets_wrapper_interface import GoogleSheetsWrapperInterface
 # from app.view.main_window import MainWindow
+from app.app_config import AppConfig
 
 from app.logger_wrapper import logger
 
@@ -37,7 +38,8 @@ class MainController:
             bool: True if successful
         """
         if not name or not phone:
-            self.main_window.show_error("Please fill the required fields (name and phone)")
+            self.main_window.show_error(
+                "Please fill the required fields (name and phone)")
             return
 
         # contact_dir = self.folder_manager.create_contact_folder(name)
@@ -57,7 +59,7 @@ class MainController:
                 name,
                 phone,
                 extra,
-                )
+            )
         except ContactAlreadyExistException as err:
             msg = err.args
             self.main_window.show_error(msg)
@@ -84,9 +86,7 @@ class MainController:
 
         # self.main_window.show_info("Contact Created Successfully")
 
-        # Open the url in the browser
-        webbrowser.open(drive_folder_url)
-
+        open_browser(drive_folder_url, AppConfig.DEFAULT_BROWSER)
         return True
 
     def delete_contact(self, name: str) -> bool:

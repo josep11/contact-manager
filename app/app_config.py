@@ -42,6 +42,8 @@ if not LOGS_DIRECTORY:
     die(
         fg.red + "Error: environments LOGS_DIRECTORY not set!" + fg.rs)
 
+DEFAULT_BROWSER = os.getenv('DEFAULT_BROWSER') or 'brave'
+
 
 class AppConfig:
     PROJECTS_ROOTDIR = PROJECTS_ROOTDIR
@@ -61,3 +63,5 @@ class AppConfig:
     isDev = isDev
 
     LOGS_DIRECTORY = LOGS_DIRECTORY
+
+    DEFAULT_BROWSER = DEFAULT_BROWSER

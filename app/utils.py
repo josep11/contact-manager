@@ -3,6 +3,8 @@ from os import path
 from random import randint
 import re
 import sys
+import webbrowser
+import subprocess
 
 from app.exceptions import InvalidNameException, WrongPhoneNumberException
 
@@ -90,3 +92,30 @@ def transform_phone(phone: str):
 #         logger.info('\n.env file exists')
 #     else:
 #         logger.error('\n.env file DOES NOT EXISTS')
+
+def open_default_browser(url: str):
+    # Open the url in the browser
+    webbrowser.open(url)
+
+
+def open_brave(url: str):
+    # The path to the Brave browser application
+    app_path = "/Applications/Brave Browser.app"
+
+    # Check if the application exists at this path
+    if os.path.exists(app_path):
+        # The command to open the URL with Brave browser
+        command = ["/usr/bin/open", "-a", "Brave Browser", url]
+
+        # Execute the command
+        subprocess.run(command)
+    else:
+        raise Exception("Brave browser is not found at this path:" + app_path)
+
+
+def open_browser(url: str, browser: str):
+    if browser == 'brave':
+        open_brave(url)
+        return
+
+    open_default_browser(url)
