@@ -1,12 +1,12 @@
 import unittest
 
-from app.utils import transform_phone, transform_name, substract_prefix_name
+from app.utils import open_browser, transform_phone, transform_name, substract_prefix_name
 
 
 class IndexText(unittest.TestCase):
 
     def test_transform_phone(self):
-        phone="623 00 28 92"
+        phone = "623 00 28 92"
         transformed_phone = transform_phone(phone)
         self.assertEqual(transformed_phone, "+34623002892")
 
@@ -38,6 +38,10 @@ class IndexText(unittest.TestCase):
         name = "Fl Javi"
         name_without_prefix = "Javi"
         self.assertEqual(substract_prefix_name(name), name_without_prefix)
+
+    def test_open_browser(self):
+        url = "https://docs.google.com/"
+        open_browser(url)
 
 
 if __name__ == "__main__":
