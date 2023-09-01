@@ -26,7 +26,7 @@ packaging==23.1
 pathspec==0.11.2
 pip-check==2.8.1
 pip-upgrader==1.4.15
-pipreqs==0.4.11
+pipreqs==0.4.13
 platformdirs==3.10.0
 pluggy==1.0.0
 protobuf==4.21.12
