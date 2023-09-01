@@ -26,13 +26,14 @@ build-and-deploy: test
 git/clean:
 	git fetch origin --prune
 
+## Ensures that the the requirements for dev are installed
+_ensure-requirements-dev:
+	@pytest --version >/dev/null 2>&1 || (echo "ERROR: pytest is required. Please run make pip/install-dev"; exit 1)
+
 ## Run unit tests
 test:
 	make _ensure-requirements-dev
 	pytest -q
 
-## Ensures that the the requirements for dev are installed
-_ensure-requirements-dev:
-	@pytest --version >/dev/null 2>&1 || (echo "ERROR: pytest is required. Please run make pip/install-dev"; exit 1)
 
 .PHONY: _ensure-requirements-dev
