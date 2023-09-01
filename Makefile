@@ -11,28 +11,29 @@ logs-tail:
 tail-logs: logs-tail
 
 ## Build
-build:
+build: test
 	./build.zsh
 
 ## Build and run
-build-and-run:
+build-and-run: test
 	./build_and_run.zsh
 
 ## Build and deploy
-build-and-deploy:
+build-and-deploy: test
 	./build_and_deploy.zsh
 
 ## Cleans up already merged branches
 git/clean:
 	git fetch origin --prune
 
+## Ensures that the the requirements for dev are installed
+_ensure-requirements-dev:
+	@pytest --version >/dev/null 2>&1 || (echo "ERROR: pytest is required. Please run make pip/install-dev"; exit 1)
+
 ## Run unit tests
 test:
 	make _ensure-requirements-dev
 	pytest -q
 
-## Ensures that the the requirements for dev are installed
-_ensure-requirements-dev:
-	@pytest --version >/dev/null 2>&1 || (echo "ERROR: pytest is required. Please run make pip/install-dev"; exit 1)
 
 .PHONY: _ensure-requirements-dev
