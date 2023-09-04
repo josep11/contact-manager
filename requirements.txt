@@ -47,5 +47,5 @@ terminaltables==3.1.10
 toml==0.10.2
 tomli==2.0.1
 uritemplate==4.1.1
-urllib3==1.26.9
+urllib3==2.0.4
 yarg==0.1.9
