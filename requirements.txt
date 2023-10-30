@@ -11,7 +11,7 @@ colorclass==2.2.2
 docopt==0.6.2
 exceptiongroup==1.1.0
 google-api-core==2.7.3
-google-api-python-client==2.81.0
+google-api-python-client==2.105.0
 google-auth==2.6.6
 google-auth-httplib2==0.1.0
 google-oauth-wrapper @ git+https://github.com/josep11/google-oauth-wrapper.git@f09fd1ad04de872dffe78958f2ff4fe469f56760
