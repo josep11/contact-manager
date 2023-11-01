@@ -25,3 +25,5 @@ dist/*
 debug.log
 
 .make/custom.mk
+
+playground.*
