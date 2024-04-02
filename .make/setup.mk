@@ -22,7 +22,7 @@ pip/install:
 pip/install-dev:
 	pip install -r requirements_dev.txt
 
-## Pip remove a dependency: make pip/remove PACKAGE=autoflake
+## Pip remove a dependency: make pip/remove PACKAGE="autoflake autopep8 black"
 pip/remove:
-	pip uninstall ${PACKAGE}
+	pip uninstall -y ${PACKAGE}
 	make pip/freeze
