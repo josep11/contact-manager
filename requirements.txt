@@ -6,7 +6,7 @@ backcall==0.2.0
 beautifulsoup4==4.12.3
 bleach==6.1.0
 cachetools==5.3.3
-certifi==2023.7.22
+certifi==2024.2.2
 charset-normalizer==3.3.2
 click==8.1.7
 colorclass==2.2.2
@@ -20,7 +20,7 @@ google-api-core==2.18.0
 google-api-python-client==2.124.0
 google-auth==2.29.0
 google-auth-httplib2==0.2.0
-google-oauth-wrapper @ git+https://github.com/josep11/google-oauth-wrapper.git@f09fd1ad04de872dffe78958f2ff4fe469f56760
+google_oauth_wrapper @ git+https://github.com/josep11/google-oauth-wrapper.git@e862e2f9b862c1da5c7dd7606cdad3f5cb4b7d48
 googleapis-common-protos==1.63.0
 httplib2==0.22.0
 idna==3.6
@@ -66,7 +66,7 @@ Pygments==2.17.2
 pyinstaller==6.5.0
 pyinstaller-hooks-contrib==2024.3
 pyparsing==3.1.2
-pytest==7.4.3
+pytest==8.1.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
 pyzmq==25.1.2
