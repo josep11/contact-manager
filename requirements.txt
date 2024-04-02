@@ -20,7 +20,7 @@ google-api-core==2.18.0
 google-api-python-client==2.124.0
 google-auth==2.29.0
 google-auth-httplib2==0.2.0
-google-oauth-wrapper @ git+https://github.com/josep11/google-oauth-wrapper.git@f09fd1ad04de872dffe78958f2ff4fe469f56760
+google_oauth_wrapper @ git+https://github.com/josep11/google-oauth-wrapper.git@e862e2f9b862c1da5c7dd7606cdad3f5cb4b7d48
 googleapis-common-protos==1.63.0
 httplib2==0.22.0
 idna==3.6
