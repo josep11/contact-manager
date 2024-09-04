@@ -1,3 +1,23 @@
+## List pyenv versions
+pyenv/versions:
+	pyenv versions
+
+## List pyenv versions (possible to install)
+pyenv/install-list:
+	pyenv install --list
+
+## Install a new python version through pyenv. make pyenv/install VERSION=3.12.2
+pyenv/install:
+	pyenv install ${VERSION}
+
+## Create a virtual environment for a project. make pyenv-virtualenv/create VERSION=3.12.2 PROJECT_NAME=my-project-name
+pyenv-virtualenv/create:
+	pyenv virtualenv ${VERSION} py${VERSION}-${PROJECT_NAME}
+
+## Activate a virtual environment locally. make pyenv-virtualenv/activate VENV_NAME=py3.12.2-my-project-name
+pyenv-virtualenv/activate:
+	pyenv local ${VENV_NAME}
+
 ## Pip freeze dependencies
 pip/freeze:
 	pip freeze > requirements.txt
@@ -26,3 +46,4 @@ pip/install-dev:
 pip/remove:
 	pip uninstall -y ${PACKAGE}
 	make pip/freeze
+
