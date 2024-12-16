@@ -35,11 +35,11 @@ pip/reqs:
 	pipreqs --force
 
 ## Pip install dependencies from requirements.txt
-pip/install:
+pip/install: pip/install-custom
 	pip install -r requirements.txt
 
 ## Pip install dev dependencies
-pip/install-dev:
+pip/install-dev: pip/install-custom
 	pip install -r requirements_dev.txt
 
 ## Pip remove a dependency: make pip/remove PACKAGE="autoflake autopep8 black"
@@ -47,3 +47,6 @@ pip/remove:
 	pip uninstall -y ${PACKAGE}
 	make pip/freeze
 
+## Installs project-specific dependencies that might not be in requirements* files
+pip/install-custom:
+	pip install git+https://github.com/josep11/google-oauth-wrapper.git
