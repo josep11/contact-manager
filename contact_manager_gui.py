@@ -11,6 +11,7 @@ from app.view.main_window import MainWindow
 from app.controller.main_controller import MainController
 
 from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper, google_drive_wrapper
+
 logger.info(f"app info = {AppConfig.APP_NAME} {get_version()}\n")
 
 
