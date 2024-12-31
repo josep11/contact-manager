@@ -1,14 +1,14 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import Menu, messagebox
+
+# Import pyobjc modules
+from Cocoa import NSApp, NSApplication, NSMenuItem, NSMenu
+
 from app import get_version
 from app.app_config import AppConfig
-
-
 from app.view.styles import *
-
 from app.logger_wrapper import logger
-
 
 class MainWindow(tk.Tk):
 
@@ -37,10 +37,12 @@ class MainWindow(tk.Tk):
         # Adding to the view
         self.config(menu=menubar)
 
+        # Customize macOS menu
+        self.customize_mac_menu()
+
     def create_help_submenu(self, menubar: tk.Menu, version: str) -> tk.Menu:
         help_ = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Help", menu=help_)
-        # TODO: do it though the official "About" submenu on the app that OS X provides
         about_info = f"{AppConfig.APP_NAME} v{version}"
         # messagebox.showinfo("Versió", about_info)
         help_.add_command(label="About", command=lambda: messagebox.showinfo("Versió", about_info))
@@ -68,3 +70,24 @@ class MainWindow(tk.Tk):
         self.container.pack(side="top", fill="both", expand=True)
         self.container.grid_columnconfigure(1, weight=1)
         self.container.grid_rowconfigure(1, weight=1)
+
+    def customize_mac_menu(self):
+        """Customize the macOS app menu."""
+        app = NSApp()
+        main_menu = app.mainMenu()
+
+        # Find the "About" menu item and customize it
+        about_menu_item = main_menu.itemAtIndex_(0).submenu().itemAtIndex_(0)
+
+        # Enable the menu item and set target/action
+        about_menu_item.setEnabled_(True)
+        about_menu_item.setAction_("showAboutDialog:")
+        about_menu_item.setTarget_(self)
+
+        logger.info("Target:", about_menu_item.target())
+        logger.info("Action:", about_menu_item.action())  
+
+    def showAboutDialog_(self, sender):
+        """Show custom About dialog when the macOS About menu is clicked."""
+        about_info = f"{AppConfig.APP_NAME} v{get_version()}\nA contact management application."
+        messagebox.showinfo("About", about_info)

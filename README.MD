@@ -127,4 +127,3 @@ python -m autoflake -i --remove-all-unused-imports *.py **/**.py
 
 ### TODO:
 
-- TODO: do it though the official "About" submenu on the app that OS X provides
