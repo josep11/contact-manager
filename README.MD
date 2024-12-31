@@ -25,11 +25,7 @@ Install dependencies:
 make pip/install
 ```
 
-Info: Internally, it's pulling a dependency outside requirements.txt file:
-
-```bash
-pip install git+https://github.com/josep11/google-oauth-wrapper.git
-```
+Info: the above command, internally, it's pulling a dependency outside requirements.txt file (see `pip/install-custom`)
 
 ## Configure for the first time
 
