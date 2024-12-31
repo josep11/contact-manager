@@ -31,10 +31,10 @@ pyenv local py3.10.4-contact-manager
 Install dependencies:
 
 ```bash
-pip install -r requirements.txt
+make pip/install
 ```
 
-If it's not working you may need to install the private dependencies like so:
+Info: Internally, it's pulling a dependency outside requirements.txt file:
 
 ```bash
 pip install git+https://github.com/josep11/google-oauth-wrapper.git
