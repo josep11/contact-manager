@@ -76,18 +76,37 @@ class MainWindow(tk.Tk):
         app = NSApp()
         main_menu = app.mainMenu()
 
+        logger.info("NSApp:")
+        logger.info(app)
+        logger.info("Main Menu:")
+        logger.info(main_menu)
+
+        self._debugNsMenu(main_menu)
+
         # Find the "About" menu item and customize it
         about_menu_item = main_menu.itemAtIndex_(0).submenu().itemAtIndex_(0)
 
         # Enable the menu item and set target/action
-        about_menu_item.setEnabled_(True)
         about_menu_item.setAction_("showAboutDialog:")
         about_menu_item.setTarget_(self)
+        about_menu_item.setEnabled_(True)
 
-        logger.info("Target:", about_menu_item.target())
-        logger.info("Action:", about_menu_item.action())  
+        logger.info(f"Target: {about_menu_item.target()}")
+        logger.info(f"Action: {about_menu_item.action()}")
+        logger.info(f"Enabled: {about_menu_item.isEnabled()}")
 
     def showAboutDialog_(self, sender):
         """Show custom About dialog when the macOS About menu is clicked."""
+        logger.info('showAboutDialog_')
         about_info = f"{AppConfig.APP_NAME} v{get_version()}\nA contact management application."
         messagebox.showinfo("About", about_info)
+
+    def _debugNsMenu(self, main_menu):
+        for i in range(main_menu.numberOfItems()):
+            menu_item = main_menu.itemAtIndex_(i)
+            logger.info(f"Menu Item {i}: {menu_item.title()}")
+            if menu_item.hasSubmenu():
+                submenu = menu_item.submenu()
+                for j in range(submenu.numberOfItems()):
+                    sub_item = submenu.itemAtIndex_(j)
+                    logger.info(f"  Submenu Item {j}: {sub_item.title()} (Enabled: {sub_item.isEnabled()})")
