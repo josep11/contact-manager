@@ -29,8 +29,7 @@ class MainWindow(tk.Tk):
         # https://tkdocs.com/tutorial/styles.html
         # https://docs.python.org/es/3.10/library/tkinter.ttk.html
 
-        # ('aqua', 'clam', 'alt', 'default', 'classic')
-        s.theme_use('clam')
+        s.theme_use('clam') #('aqua', 'clam', 'alt', 'default', 'classic')
 
         menubar = Menu(self)
         # Adding Help Menu
@@ -41,10 +40,10 @@ class MainWindow(tk.Tk):
     def create_help_submenu(self, menubar: tk.Menu, version: str) -> tk.Menu:
         help_ = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Help", menu=help_)
+        # TODO: do it though the official "About" submenu on the app that OS X provides
         about_info = f"{AppConfig.APP_NAME} v{version}"
         # messagebox.showinfo("Versió", about_info)
-        help_.add_command(label="About", command=lambda: messagebox.showinfo(
-            "Versió", about_info))
+        help_.add_command(label="About", command=lambda: messagebox.showinfo("Versió", about_info))
 
     def set_controller(self, controller):
         self.controller = controller

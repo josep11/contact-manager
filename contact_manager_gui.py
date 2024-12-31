@@ -1,7 +1,7 @@
 import sys
-from sys import exit
 from datetime import datetime
 
+from app import get_version
 from app.logger_wrapper import logger
 from app.app_config import AppConfig
 from app.view.frames.create_contact_frame import CreateContactFrame
@@ -11,7 +11,8 @@ from app.view.main_window import MainWindow
 from app.controller.main_controller import MainController
 
 from app.wrappers_factory import google_sheets_wrapper, google_contacts_wrapper, google_drive_wrapper
-# logger.info(AppConfig.APP_NAME)
+
+logger.info(f"app info = {AppConfig.APP_NAME} {get_version()}\n")
 
 
 def main():

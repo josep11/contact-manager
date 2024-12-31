@@ -16,17 +16,8 @@ If we are going to build we need to install the python version like this:
 env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.10.4
 ```
 
-Creating python environment with pyenv:
+[Creating python environment with pyenv](./RECREATE_VIRTUALENV.md)
 
-```bash
-pyenv virtualenv 3.10.4 py3.10.4-contact-manager
-```
-
-Activate it from this directory:
-
-```bash
-pyenv local py3.10.4-contact-manager
-```
 
 Install dependencies:
 
@@ -34,11 +25,7 @@ Install dependencies:
 make pip/install
 ```
 
-Info: Internally, it's pulling a dependency outside requirements.txt file:
-
-```bash
-pip install git+https://github.com/josep11/google-oauth-wrapper.git
-```
+Info: the above command, internally, it's pulling a dependency outside requirements.txt file (see `pip/install-custom`)
 
 ## Configure for the first time
 
@@ -50,7 +37,7 @@ This will be useful for retriving the API Token via Oauth.
 
 ### Install Globally
 
-Copy the following into ~/.bash_profile, ~/.profile or equivalent to install it as a system wide command:
+Copy the following into `~/.zprofile`, or equivalent to install it as a system wide command:
 
 ```bash
 ###### Contacts Manager #######
@@ -70,7 +57,6 @@ function delete_contact(){
 ```
 
 ## Run
-
 ```bash
 create_contact "full name" "phone number"
 delete_contact "full name"
@@ -137,3 +123,8 @@ python -m autoflake -i --remove-all-unused-imports *.py **/**.py
 ```bash
 ./build_and_deploy.sh
 ```
+
+
+### TODO:
+
+- TODO: do it though the official "About" submenu on the app that OS X provides

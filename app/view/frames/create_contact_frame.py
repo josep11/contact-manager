@@ -39,14 +39,14 @@ class CreateContactFrame(tk.Frame):
 
     def create_widgets(self):
 
-        # username
+        # nom
         self.nom_label = ttk.Label(self, text="Nom:")
         self.nom_label.grid(column=0, row=0, sticky=tk.W, padx=5, pady=5)
 
         self.nom = ttk.Entry(self)
         self.nom.grid(column=1, row=0, sticky=tk.E, padx=5, pady=5)
 
-        # password
+        # telefon
         self.telefon_label = ttk.Label(self, text="Telefon:")
         self.telefon_label.grid(column=0, row=1, sticky=tk.W, padx=5, pady=5)
 
@@ -60,12 +60,15 @@ class CreateContactFrame(tk.Frame):
         self.extra = ttk.Entry(self)
         self.extra.grid(column=1, row=2, sticky=tk.E, padx=5, pady=5)
 
+        # explicitly make all of them editable
+        [input.config(state="normal") for input in [self.nom, self.telefon, self.extra]]
+
         if AppConfig.isDev:
             self.nom.insert(0, DummyContact.name)
             self.telefon.insert(0, DummyContact.phone)
             self.extra.insert(0, DummyContact.extra)
 
-        # login button
+        # create contact button
         create_contact_button = ttk.Button(
             self, text="Create Contact", command=self.created_button_pressed)
         create_contact_button.grid(column=1, row=3, sticky=tk.E, padx=5, pady=5,
