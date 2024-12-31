@@ -41,7 +41,7 @@ This will be useful for retriving the API Token via Oauth.
 
 ### Install Globally
 
-Copy the following into ~/.bash_profile, ~/.profile or equivalent to install it as a system wide command:
+Copy the following into `~/.zprofile`, or equivalent to install it as a system wide command:
 
 ```bash
 ###### Contacts Manager #######
