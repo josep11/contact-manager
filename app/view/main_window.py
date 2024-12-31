@@ -76,10 +76,10 @@ class MainWindow(tk.Tk):
         app = NSApp()
         main_menu = app.mainMenu()
 
-        logger.info("NSApp:")
-        logger.info(app)
-        logger.info("Main Menu:")
-        logger.info(main_menu)
+        # logger.info("NSApp:")
+        # logger.info(app)
+        # logger.info("Main Menu:")
+        # logger.info(main_menu)
 
         self._debugNsMenu(main_menu)
 
