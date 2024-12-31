@@ -35,5 +35,8 @@ test:
 	make _ensure-requirements-dev
 	pytest -q
 
+## Run a quick tkinter test
+test-tkinter:
+	python -m tkinter
 
 .PHONY: _ensure-requirements-dev
