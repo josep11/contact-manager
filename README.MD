@@ -16,17 +16,8 @@ If we are going to build we need to install the python version like this:
 env PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.10.4
 ```
 
-Creating python environment with pyenv:
+[Creating python environment with pyenv](./RECREATE_VIRTUALENV.md)
 
-```bash
-pyenv virtualenv 3.10.4 py3.10.4-contact-manager
-```
-
-Activate it from this directory:
-
-```bash
-pyenv local py3.10.4-contact-manager
-```
 
 Install dependencies:
 

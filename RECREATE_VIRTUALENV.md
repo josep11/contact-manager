@@ -21,7 +21,6 @@ pyenv local py3.12.8-contact-manager
 
 python --version
 
-
 ## Clean up old
 
 pyenv uninstall py3.10.4-contact-manager
