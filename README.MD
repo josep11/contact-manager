@@ -57,7 +57,6 @@ function delete_contact(){
 ```
 
 ## Run
-
 ```bash
 create_contact "full name" "phone number"
 delete_contact "full name"

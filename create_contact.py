@@ -16,6 +16,7 @@ try:
                         help="the name of the contact to create (wrapped it between brackets)")
     parser.add_argument("phone", type=str,
                         help="the phone of the contact to create (wrapped it between brackets)")
+    parser.add_argument("extra", nargs="*", help="Additional arguments")
     args = parser.parse_args()
 except ImportError:
     args = None
