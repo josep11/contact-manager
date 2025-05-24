@@ -1,5 +1,5 @@
 # dummy file
-__version__ = '3.0.2'
+__version__ = '3.0.3'
 
 
 def get_version() -> str:
