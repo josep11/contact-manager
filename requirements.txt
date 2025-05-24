@@ -109,7 +109,7 @@ pyobjc-framework-ContactsUI==10.3.1
 pyobjc-framework-CoreAudio==10.3.1
 pyobjc-framework-CoreAudioKit==10.3.1
 pyobjc-framework-CoreBluetooth==10.3.1
-pyobjc-framework-CoreData==10.3.1
+pyobjc-framework-CoreData==11.0
 pyobjc-framework-CoreHaptics==10.3.1
 pyobjc-framework-CoreLocation==10.3.1
 pyobjc-framework-CoreMedia==10.3.1
