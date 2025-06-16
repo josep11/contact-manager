@@ -101,7 +101,7 @@ pyobjc-framework-CFNetwork==10.3.1
 pyobjc-framework-Cinematic==10.3.1
 pyobjc-framework-ClassKit==10.3.1
 pyobjc-framework-CloudKit==10.3.1
-pyobjc-framework-Cocoa==10.3.1
+pyobjc-framework-Cocoa==11.1
 pyobjc-framework-Collaboration==10.3.1
 pyobjc-framework-ColorSync==10.3.1
 pyobjc-framework-Contacts==10.3.1
